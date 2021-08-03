@@ -30,35 +30,40 @@ namespace Bar.Backend.Controllers
             return Ok(dto);
         }
 
+        [HttpGet, Route("{id}")]
+        public ActionResult<RumDto> GetById([FromRoute] Guid id)
+        {
+            var entity = mDbContext.Rums.SingleOrDefault(x => x.Id == id);
+
+            if (entity is null)
+                return NotFound();
+
+            return Ok(entity.ToDto());
+        }
 
         [HttpPost]
         public ActionResult<Rum> Create([FromBody] RumDto dto)
         {
             if (mDbContext.Rums.Any(x => x.Id == dto.Id))
-                return Conflict("Already exists");
+                return Conflict();
 
-            var entity = dto.ToEntity();
-
-            mDbContext.Rums.Add(entity);
-
+            mDbContext.Rums.Add(dto.ToEntity());
             mDbContext.SaveChanges();
 
-            var rum = mDbContext.Rums.Single(x => x.Id == dto.Id);
+            var entity = mDbContext.Rums.Single(x => x.Id == dto.Id);
 
-            return Ok(rum.ToDto());
+            return Ok(entity.ToDto());
         }
-
 
         [HttpDelete, Route("{id}")]
         public IActionResult DeleteById([FromRoute] Guid id)
         {
-            var rum = mDbContext.Rums.SingleOrDefault(x => x.Id == id);
+            var entity = mDbContext.Rums.SingleOrDefault(x => x.Id == id);
 
-            if (rum is null)
+            if (entity is null)
                 return NoContent();
 
-            mDbContext.Rums.Remove(rum);
-
+            mDbContext.Rums.Remove(entity);
             mDbContext.SaveChanges();
 
             return NoContent();
