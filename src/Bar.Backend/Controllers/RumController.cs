@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Bar.Data;
-using Bar.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -42,7 +41,7 @@ namespace Bar.Backend.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Rum> Create([FromBody] RumDto dto)
+        public ActionResult<RumDbo> Create([FromBody] RumDto dto)
         {
             if (mDbContext.Rums.Any(x => x.Id == dto.Id))
                 return Conflict();

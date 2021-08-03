@@ -3,12 +3,12 @@
 using System;
 
 
-namespace Bar.Domain
+namespace Bar.Data
 {
     /// <summary>
     ///     Represents a Rum.
     /// </summary>
-    public sealed class Rum
+    public sealed class RumDbo
     {
         /// <summary>
         ///     The unique Id of the Rum.

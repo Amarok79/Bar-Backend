@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
-using Bar.Domain;
+using Bar.Data;
 
 
 namespace Bar.Backend.Controllers
 {
     public static class RumExtensions
     {
-        public static Rum ToEntity(this RumDto dto)
+        public static RumDbo ToEntity(this RumDto dto)
         {
-            return new Rum {
+            return new RumDbo {
                 Id     = dto.Id ?? Guid.NewGuid(),
                 Name   = dto.Name,
                 Teaser = dto.Teaser,
@@ -18,7 +18,7 @@ namespace Bar.Backend.Controllers
             };
         }
 
-        public static RumDto ToDto(this Rum entity)
+        public static RumDto ToDto(this RumDbo entity)
         {
             return new RumDto {
                 Id     = entity.Id,
