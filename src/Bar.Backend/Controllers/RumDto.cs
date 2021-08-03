@@ -1,14 +1,15 @@
 ﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
+using System.Collections.Generic;
 
 
-namespace Bar.Domain
+namespace Bar.Backend.Controllers
 {
     /// <summary>
     ///     Represents a Rum.
     /// </summary>
-    public sealed class Rum
+    public class RumDto
     {
         /// <summary>
         ///     The unique Id of the Rum.
@@ -18,7 +19,7 @@ namespace Bar.Domain
         /// <summary>
         ///     The name of the Rum, e.g. "Clément Rhum Blanc".
         /// </summary>
-        public String Name { get; set; } = default!;
+        public String Name { get; set; }
 
         /// <summary>
         ///     A teaser of the Rum, e.g. "Martinique".
@@ -26,8 +27,8 @@ namespace Bar.Domain
         public String? Teaser { get; set; }
 
         /// <summary>
-        ///     A semi-colon separated list of images of the Rum, e.g. "KRO01084.jpg;KRO00410.jpg".
+        ///     A list of images of the Rum, e.g. "KRO01084.jpg", "KRO00410.jpg".
         /// </summary>
-        public String Images { get; set; } = default!;
+        public IList<String> Images { get; set; } = new List<String>();
     }
 }

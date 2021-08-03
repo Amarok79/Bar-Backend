@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bar.Data.Migrations
 {
     [DbContext(typeof(BarDbContext))]
-    [Migration("20210803115425_Initial")]
+    [Migration("20210803125857_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,32 +21,15 @@ namespace Bar.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Bar.Domain.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("RumId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RumId");
-
-                    b.ToTable("Image");
-                });
-
             modelBuilder.Entity("Bar.Domain.Rum", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Images")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -58,18 +41,6 @@ namespace Bar.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rums");
-                });
-
-            modelBuilder.Entity("Bar.Domain.Image", b =>
-                {
-                    b.HasOne("Bar.Domain.Rum", null)
-                        .WithMany("Images")
-                        .HasForeignKey("RumId");
-                });
-
-            modelBuilder.Entity("Bar.Domain.Rum", b =>
-                {
-                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

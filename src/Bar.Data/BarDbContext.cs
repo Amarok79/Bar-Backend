@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bar.Data
 {
-    public class BarDbContext : DbContext
+    public sealed class BarDbContext : DbContext
     {
-        public DbSet<Rum> Rums { get; set; }
+        public DbSet<Rum> Rums { get; set; } = default!;
 
 
         public BarDbContext(DbContextOptions<BarDbContext> options)
