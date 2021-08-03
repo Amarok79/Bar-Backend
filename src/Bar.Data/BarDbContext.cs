@@ -21,9 +21,5 @@ namespace Bar.Data
         {
             builder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Bar");
         }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-        }
     }
 }

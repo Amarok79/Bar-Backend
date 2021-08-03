@@ -19,7 +19,7 @@ namespace Bar.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Bar.Domain.Rum", b =>
+            modelBuilder.Entity("Bar.Data.RumDbo", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace Bar.Data
@@ -8,6 +9,7 @@ namespace Bar.Data
     /// <summary>
     ///     Represents a Rum.
     /// </summary>
+    [Table("Rums")]
     public sealed class RumDbo
     {
         /// <summary>

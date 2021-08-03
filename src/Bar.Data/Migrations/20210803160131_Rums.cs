@@ -16,10 +16,8 @@ namespace Bar.Data.Migrations
                     Teaser = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Images = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rums", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Rums", x => x.Id)
+            );
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

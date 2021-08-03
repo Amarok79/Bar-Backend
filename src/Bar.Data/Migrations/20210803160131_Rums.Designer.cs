@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bar.Data.Migrations
 {
     [DbContext(typeof(BarDbContext))]
-    [Migration("20210803131449_Rums")]
+    [Migration("20210803160131_Rums")]
     partial class Rums
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace Bar.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Bar.Domain.Rum", b =>
+            modelBuilder.Entity("Bar.Data.RumDbo", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
