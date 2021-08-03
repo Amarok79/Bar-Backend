@@ -7,10 +7,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bar.Data
 {
-    public sealed class BarDbContext : DbContext
+    public class BarDbContext : DbContext
     {
         public DbSet<Rum>? Rums { get; set; }
 
+
+        public BarDbContext()
+        {
+        }
 
         public BarDbContext(DbContextOptions<BarDbContext> options)
             : base(options)
@@ -18,9 +22,13 @@ namespace Bar.Data
         }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Bar");
+            builder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Bar");
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
         }
     }
 }
