@@ -28,6 +28,6 @@ namespace Bar.Domain
         /// <summary>
         ///     A semi-colon separated list of images of the Rum, e.g. "KRO01084.jpg;KRO00410.jpg".
         /// </summary>
-        public String Images { get; set; } = default!;
+        public String? Images { get; set; } = default!;
     }
 }
