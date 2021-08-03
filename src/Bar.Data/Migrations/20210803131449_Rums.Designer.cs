@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bar.Data.Migrations
 {
     [DbContext(typeof(BarDbContext))]
-    [Migration("20210803125857_Initial")]
-    partial class Initial
+    [Migration("20210803131449_Rums")]
+    partial class Rums
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,6 @@ namespace Bar.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Images")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

@@ -26,7 +26,6 @@ namespace Bar.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Images")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
