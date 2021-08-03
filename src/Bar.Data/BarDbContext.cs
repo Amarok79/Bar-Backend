@@ -9,12 +9,8 @@ namespace Bar.Data
 {
     public class BarDbContext : DbContext
     {
-        public DbSet<Rum>? Rums { get; set; }
+        public DbSet<Rum> Rums { get; set; }
 
-
-        public BarDbContext()
-        {
-        }
 
         public BarDbContext(DbContextOptions<BarDbContext> options)
             : base(options)

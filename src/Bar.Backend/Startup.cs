@@ -1,8 +1,10 @@
 // Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
+using Bar.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,10 @@ namespace Bar.Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<BarDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("Database"))
+            );
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
