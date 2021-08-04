@@ -15,7 +15,7 @@ namespace Bar.Domain
         /// <summary>
         ///     Gets all items.
         /// </summary>
-        Task<IReadOnlyCollection<Rum>> GetAsync();
+        Task<IReadOnlyList<Rum>> GetAsync();
 
         /// <summary>
         ///     Gets the item with the given Id, or null if not existing.
