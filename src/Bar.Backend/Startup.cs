@@ -2,6 +2,7 @@
 
 using System;
 using Bar.Data;
+using Bar.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,8 @@ namespace Bar.Backend
             services.AddDbContext<BarDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("Database"))
             );
+
+            services.AddScoped<IRumRepository, DbRumRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

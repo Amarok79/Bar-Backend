@@ -1,30 +1,29 @@
 ﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
-using Bar.Data;
+using System.Linq;
+using Bar.Domain;
 
 
 namespace Bar.Backend.Controllers
 {
     public static class RumExtensions
     {
-        public static RumDbo ToEntity(this RumDto dto)
+        public static Rum ToEntity(this RumDto dto)
         {
-            return new RumDbo {
-                Id     = dto.Id ?? Guid.NewGuid(),
-                Name   = dto.Name,
-                Teaser = dto.Teaser,
-                Images = String.Join(';', dto.Images ?? Array.Empty<String>()),
+            return new Rum(dto.Id.Value, dto.Name) {
+                Teaser = dto.Teaser ?? String.Empty,
+                Images = dto.Images is null ? Array.Empty<Image>() : dto.Images.Select(x => new Image(x)).ToList(),
             };
         }
 
-        public static RumDto ToDto(this RumDbo entity)
+        public static RumDto ToDto(this Rum entity)
         {
             return new RumDto {
                 Id     = entity.Id,
                 Name   = entity.Name,
                 Teaser = entity.Teaser,
-                Images = entity.Images?.Split(';', StringSplitOptions.RemoveEmptyEntries),
+                Images = entity.Images.Select(x => x.FileName).ToList(),
             };
         }
     }

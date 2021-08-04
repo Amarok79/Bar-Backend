@@ -3,7 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bar.Data;
+using System.Threading.Tasks;
+using Bar.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -12,60 +13,51 @@ namespace Bar.Backend.Controllers
     [ApiController, Route("api/rums")]
     public sealed class RumController : ControllerBase
     {
-        private readonly BarDbContext mDbContext;
+        private readonly IRumRepository mRepository;
 
 
-        public RumController(BarDbContext dbContext)
+        public RumController(IRumRepository repository)
         {
-            mDbContext = dbContext;
+            mRepository = repository;
         }
 
 
         [HttpGet]
-        public ActionResult<IList<RumDto>> GetAll()
+        public async Task<ActionResult<IList<RumDto>>> GetAll()
         {
-            var dto = mDbContext.Rums.Select(x => x.ToDto()).ToList();
+            var items = await mRepository.GetAllAsync();
+            var dto   = items.Select(x => x.ToDto());
 
             return Ok(dto);
         }
 
         [HttpGet, Route("{id}")]
-        public ActionResult<RumDto> GetById([FromRoute] Guid id)
+        public async Task<ActionResult<RumDto>> GetSingle([FromRoute] Guid id)
         {
-            var entity = mDbContext.Rums.SingleOrDefault(x => x.Id == id);
+            var item = await mRepository.GetOrDefaultAsync(id);
 
-            if (entity is null)
+            if (item is null)
                 return NotFound();
 
-            return Ok(entity.ToDto());
-        }
-
-        [HttpPost]
-        public ActionResult<RumDbo> Create([FromBody] RumDto dto)
-        {
-            if (mDbContext.Rums.Any(x => x.Id == dto.Id))
-                return Conflict();
-
-            mDbContext.Rums.Add(dto.ToEntity());
-            mDbContext.SaveChanges();
-
-            var entity = mDbContext.Rums.Single(x => x.Id == dto.Id);
-
-            return Ok(entity.ToDto());
+            return Ok(item.ToDto());
         }
 
         [HttpDelete, Route("{id}")]
-        public IActionResult DeleteById([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteSingle([FromRoute] Guid id)
         {
-            var entity = mDbContext.Rums.SingleOrDefault(x => x.Id == id);
-
-            if (entity is null)
-                return NoContent();
-
-            mDbContext.Rums.Remove(entity);
-            mDbContext.SaveChanges();
+            await mRepository.DeleteAsync(id);
 
             return NoContent();
+        }
+
+        [HttpPut, Route("{id}")]
+        public async Task<ActionResult<RumDto>> CreateOrUpdateSingle([FromRoute] Guid id, [FromBody] RumDto dto)
+        {
+            dto.Id = id;
+
+            await mRepository.AddOrUpdateAsync(dto.ToEntity());
+
+            return Ok(dto);
         }
     }
 }

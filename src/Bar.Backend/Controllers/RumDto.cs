@@ -29,6 +29,6 @@ namespace Bar.Backend.Controllers
         /// <summary>
         ///     A list of images of the Rum, e.g. "KRO01084.jpg", "KRO00410.jpg".
         /// </summary>
-        public IList<String>? Images { get; set; } = new List<String>();
+        public IList<String>? Images { get; set; }
     }
 }
