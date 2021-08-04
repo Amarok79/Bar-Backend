@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace Bar.Backend.Tests.Controllers
 {
     [TestFixture]
-    public class RumExtensions
+    public class RumExtensionsTests
     {
         [Test]
         public void ToEntity_Name()
