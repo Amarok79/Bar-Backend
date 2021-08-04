@@ -11,6 +11,8 @@ namespace Bar.Backend.Controllers
     {
         public static Rum ToEntity(this RumDto dto)
         {
+            dto.Id ??= Guid.NewGuid();
+
             return new Rum(dto.Id.Value, dto.Name) {
                 Teaser = dto.Teaser ?? String.Empty,
                 Images = dto.Images is null ? Array.Empty<Image>() : dto.Images.Select(x => new Image(x)).ToList(),
