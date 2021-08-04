@@ -15,11 +15,5 @@ namespace Bar.Data
             : base(options)
         {
         }
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder builder)
-        {
-            builder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Bar");
-        }
     }
 }
