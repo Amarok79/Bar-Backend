@@ -31,7 +31,7 @@ namespace Bar.Backend.Controllers
             return Ok(dto);
         }
 
-        [HttpGet, Route("{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<RumDto>> GetSingle([FromRoute] Guid id)
         {
             var item = await mRepository.GetOrDefaultAsync(id);
@@ -42,7 +42,7 @@ namespace Bar.Backend.Controllers
             return Ok(item.ToDto());
         }
 
-        [HttpDelete, Route("{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSingle([FromRoute] Guid id)
         {
             await mRepository.DeleteAsync(id);
@@ -50,14 +50,16 @@ namespace Bar.Backend.Controllers
             return NoContent();
         }
 
-        [HttpPut, Route("{id}")]
+        [HttpPut("{id}")]
         public async Task<ActionResult<RumDto>> CreateOrUpdateSingle([FromRoute] Guid id, [FromBody] RumDto dto)
         {
             dto.Id = id;
 
             await mRepository.AddOrUpdateAsync(dto.ToEntity());
 
-            return Ok(dto);
+            var item = await mRepository.GetOrDefaultAsync(id);
+
+            return Ok(item!.ToDto());
         }
     }
 }
