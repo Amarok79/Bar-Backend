@@ -15,7 +15,7 @@ namespace Bar.Domain
         /// <summary>
         ///     Gets all items.
         /// </summary>
-        Task<IReadOnlyList<Rum>> GetAsync();
+        Task<IReadOnlyList<Rum>> GetAllAsync();
 
         /// <summary>
         ///     Gets the item with the given Id, or null if not existing.
@@ -24,7 +24,7 @@ namespace Bar.Domain
         /// <param name="id">
         ///     The Id of the item to return.
         /// </param>
-        Task<Rum?> GetAsync(Guid id);
+        Task<Rum?> GetOrDefaultAsync(Guid id);
 
         /// <summary>
         ///     Deletes the item with the given Id.
@@ -39,15 +39,15 @@ namespace Bar.Domain
         Task<Boolean> DeleteAsync(Guid id);
 
         /// <summary>
-        ///     Updates an existing item, or creates a new one.
+        ///     Adds a new item or updates an existing one.
         /// </summary>
         /// 
         /// <param name="item">
-        ///     The item to update or create.
+        ///     The item to add or update.
         /// </param>
         /// <returns>
-        ///     True, if an existing item has been updated, otherwise False.
+        ///     True, if a new item has been added, otherwise False if an existing item has been updated.
         /// </returns>
-        Task<Boolean> UpdateAsync(Rum item);
+        Task<Boolean> AddOrUpdateAsync(Rum item);
     }
 }
