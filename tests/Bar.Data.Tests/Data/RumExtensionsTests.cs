@@ -6,7 +6,7 @@ using NFluent;
 using NUnit.Framework;
 
 
-namespace Bar.Data.Tests
+namespace Bar.Data
 {
     [TestFixture]
     public class RumExtensionsTests
