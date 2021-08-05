@@ -5,7 +5,7 @@ using NFluent;
 using NUnit.Framework;
 
 
-namespace Bar.Domain.Tests
+namespace Bar.Domain
 {
     [TestFixture]
     public class ImageTests
