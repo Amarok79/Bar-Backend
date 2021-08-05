@@ -10,7 +10,7 @@ namespace Bar.Data
     ///     Represents a Rum.
     /// </summary>
     [Table("Rums")]
-    public sealed class RumDbo
+    internal sealed class RumDbo
     {
         /// <summary>
         ///     The unique Id of the Rum.

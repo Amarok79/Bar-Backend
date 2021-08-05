@@ -8,7 +8,7 @@ using Bar.Domain;
 
 namespace Bar.Data
 {
-    public static class RumExtensions
+    internal static class RumExtensions
     {
         public static RumDbo ToDbo(this Rum entity)
         {

@@ -8,7 +8,7 @@ namespace Bar.Data
 {
     public sealed class BarDbContext : DbContext
     {
-        public DbSet<RumDbo> Rums { get; set; } = default!;
+        internal DbSet<RumDbo> Rums { get; set; } = default!;
 
 
         public BarDbContext(DbContextOptions<BarDbContext> options)
