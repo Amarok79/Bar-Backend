@@ -2,7 +2,6 @@
 
 using System;
 using System.Threading.Tasks;
-using Bar.Backend.Controllers;
 using Flurl.Http;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -10,7 +9,7 @@ using NFluent;
 using NUnit.Framework;
 
 
-namespace Bar.Backend.Tests.Controllers
+namespace Bar.Backend.Controllers
 {
     [TestFixture]
     public class RumControllerTests

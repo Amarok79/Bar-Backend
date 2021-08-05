@@ -1,7 +1,6 @@
 // Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
-using Bar.Backend.Controllers;
 using Bar.Data;
 using Bar.Domain;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 
-namespace Bar.Backend.Tests.Controllers
+namespace Bar.Backend.Controllers
 {
     public sealed class TestStartup
     {

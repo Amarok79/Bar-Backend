@@ -1,13 +1,12 @@
 ﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
-using Bar.Backend.Controllers;
 using Bar.Domain;
 using NFluent;
 using NUnit.Framework;
 
 
-namespace Bar.Backend.Tests.Controllers
+namespace Bar.Backend.Controllers
 {
     [TestFixture]
     public class RumExtensionsTests
