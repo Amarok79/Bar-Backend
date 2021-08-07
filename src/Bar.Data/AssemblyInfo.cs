@@ -4,3 +4,4 @@ using System.Runtime.CompilerServices;
 
 
 [assembly: InternalsVisibleTo("Bar.Data.Tests")]
+[assembly: InternalsVisibleTo("Bar.Backend.Tests")]

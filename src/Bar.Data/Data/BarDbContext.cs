@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bar.Data
 {
-    public sealed class BarDbContext : DbContext
+    internal sealed class BarDbContext : DbContext
     {
         internal DbSet<RumDbo> Rums { get; set; } = default!;
 

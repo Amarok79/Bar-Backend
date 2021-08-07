@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bar.Data
 {
-    public sealed class DbRumRepository : IRumRepository
+    internal sealed class DbRumRepository : IRumRepository
     {
         private readonly BarDbContext mDbContext;
 
