@@ -25,6 +25,8 @@ namespace Bar.Backend
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
+
             services.AddControllers();
 
             services.AddRumRepository(Configuration);

@@ -4,6 +4,8 @@
 		<TargetFramework>net5.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<RootNamespace>Bar</RootNamespace>
+		<ApplicationInsightsResourceId>/subscriptions/41707fe0-4695-4325-9518-8324cebdb7f4/resourceGroups/cachaca/providers/microsoft.insights/components/Bar-Backend</ApplicationInsightsResourceId>
+		<UserSecretsId>13cedb6e-2f9b-4f4f-887f-f09f4465fa1c</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -11,6 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.8">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
