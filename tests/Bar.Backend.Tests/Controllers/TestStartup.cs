@@ -1,6 +1,7 @@
 // Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
+using Bar.Backend.Middleware;
 using Bar.Data;
 using Bar.Domain;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +38,8 @@ namespace Bar.Backend.Controllers
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
+
+            app.UseMiddleware<ApiKeyMiddleware>();
 
             app.UseRouting();
 

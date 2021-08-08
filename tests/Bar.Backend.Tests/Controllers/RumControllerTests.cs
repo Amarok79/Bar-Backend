@@ -50,6 +50,7 @@ namespace Bar.Backend.Controllers
             await _DeleteItem_1();
             await _DeleteItem_2();
             await _GetAll_Returns_EmptyList();
+            await _GetAll_ApiKey_Mismatch();
         }
 
 
@@ -177,6 +178,13 @@ namespace Bar.Backend.Controllers
             var rsp = await mClient.Request("/api/rums/f942f025-7970-4990-84b7-68afba4fc341").DeleteAsync();
 
             Check.That(rsp.StatusCode).IsEqualTo(204);
+        }
+
+        private async Task _GetAll_ApiKey_Mismatch()
+        {
+            var rsp = await mClient.Request("/api/rums").WithHeader("Api-Key", "foo").AllowAnyHttpStatus().GetAsync();
+
+            Check.That(rsp.StatusCode).IsEqualTo(401);
         }
     }
 }
