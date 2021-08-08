@@ -9,11 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bar.Data", "src\Bar.Data\Ba
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bar.Backend", "src\Bar.Backend\Bar.Backend.csproj", "{001770DE-22C2-4A51-AEC8-B7B4444D69A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bar.Domain.Tests", "tests\Bar.Domain.Tests\Bar.Domain.Tests.csproj", "{25322834-4685-4B27-8DC8-AB00CB1F5191}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bar.Domain.Tests", "tests\Bar.Domain.Tests\Bar.Domain.Tests.csproj", "{25322834-4685-4B27-8DC8-AB00CB1F5191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bar.Data.Tests", "tests\Bar.Data.Tests\Bar.Data.Tests.csproj", "{2F1244B7-CA19-4BAD-BB9C-8A9F30DD8399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bar.Data.Tests", "tests\Bar.Data.Tests\Bar.Data.Tests.csproj", "{2F1244B7-CA19-4BAD-BB9C-8A9F30DD8399}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bar.Backend.Tests", "tests\Bar.Backend.Tests\Bar.Backend.Tests.csproj", "{2E681E5D-8D9E-4847-89AB-C8B58388979B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bar.Backend.Tests", "tests\Bar.Backend.Tests\Bar.Backend.Tests.csproj", "{2E681E5D-8D9E-4847-89AB-C8B58388979B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{71FC8069-1A83-44D8-81CE-C80971731FC9}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\main.yml = .github\workflows\main.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
