@@ -4,14 +4,16 @@ using Bar.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bar.Data.Migrations
 {
     [DbContext(typeof(BarDbContext))]
-    partial class BarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210809165940_Gins")]
+    partial class Gins
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
