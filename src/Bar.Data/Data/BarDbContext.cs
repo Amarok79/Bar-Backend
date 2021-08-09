@@ -8,6 +8,8 @@ namespace Bar.Data
 {
     internal sealed class BarDbContext : DbContext
     {
+        internal DbSet<GinDbo> Gins { get; set; } = default!;
+
         internal DbSet<RumDbo> Rums { get; set; } = default!;
 
 

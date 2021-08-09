@@ -29,7 +29,7 @@ namespace Bar.Backend
 
             services.AddControllers();
 
-            services.AddRumRepository(Configuration);
+            services.AddRepositories(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

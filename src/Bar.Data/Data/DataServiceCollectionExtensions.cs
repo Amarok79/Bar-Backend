@@ -15,14 +15,12 @@ namespace Bar.Data
     public static class DataServiceCollectionExtensions
     {
         /// <summary>
-        ///     Adds the Rum repository.
+        ///     Adds the Rum and Gin repositories.
         /// </summary>
-        public static IServiceCollection AddRumRepository(
-            this IServiceCollection services,
-            IConfiguration configuration
-        )
+        public static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<BarDbContext>(x => x.UseSqlServer(configuration.GetConnectionString("Database")));
+            services.AddScoped<IGinRepository, DbGinRepository>();
             services.AddScoped<IRumRepository, DbRumRepository>();
 
             return services;
