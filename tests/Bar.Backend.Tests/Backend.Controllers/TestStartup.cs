@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 
 namespace Bar.Backend.Controllers
@@ -31,13 +30,13 @@ namespace Bar.Backend.Controllers
 
             services.AddDbContext<BarDbContext>(options => options.UseInMemoryDatabase("Bar"));
 
+            services.AddScoped<IGinRepository, DbGinRepository>();
             services.AddScoped<IRumRepository, DbRumRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-                app.UseDeveloperExceptionPage();
+            app.UseDeveloperExceptionPage();
 
             app.UseMiddleware<ApiKeyMiddleware>();
 
