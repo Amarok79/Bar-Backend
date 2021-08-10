@@ -15,33 +15,33 @@ namespace Bar.Domain
         {
             var id = Guid.NewGuid();
 
-            var Gin = new Gin(id, "The Stin Dry Gin");
+            var gin = new Gin(id, "The Stin Dry Gin");
 
-            Check.That(Gin.Id).IsEqualTo(id);
-            Check.That(Gin.Name).IsEqualTo("The Stin Dry Gin");
-            Check.That(Gin.Teaser).IsEmpty();
-            Check.That(Gin.Images).IsEmpty();
+            Check.That(gin.Id).IsEqualTo(id);
+            Check.That(gin.Name).IsEqualTo("The Stin Dry Gin");
+            Check.That(gin.Teaser).IsEmpty();
+            Check.That(gin.Images).IsEmpty();
 
-            Gin = new Gin(id, "The Stin Dry Gin") {
+            gin = new Gin(id, "The Stin Dry Gin") {
                 Teaser = "Styrian Dry Gin",
                 Images = new[] { new Image("KRO01046.jpg"), new Image("KRO00364.jpg") },
             };
 
-            Check.That(Gin.Id).IsEqualTo(id);
-            Check.That(Gin.Name).IsEqualTo("The Stin Dry Gin");
-            Check.That(Gin.Teaser).IsEqualTo("Styrian Dry Gin");
-            Check.That(Gin.Images).HasSize(2);
-            Check.That(Gin.Images[0].FileName).IsEqualTo("KRO01046.jpg");
-            Check.That(Gin.Images[1].FileName).IsEqualTo("KRO00364.jpg");
+            Check.That(gin.Id).IsEqualTo(id);
+            Check.That(gin.Name).IsEqualTo("The Stin Dry Gin");
+            Check.That(gin.Teaser).IsEqualTo("Styrian Dry Gin");
+            Check.That(gin.Images).HasSize(2);
+            Check.That(gin.Images[0].FileName).IsEqualTo("KRO01046.jpg");
+            Check.That(gin.Images[1].FileName).IsEqualTo("KRO00364.jpg");
 
-            Gin = Gin with { Teaser = "foo" };
+            gin = gin with { Teaser = "foo" };
 
-            Check.That(Gin.Id).IsEqualTo(id);
-            Check.That(Gin.Name).IsEqualTo("The Stin Dry Gin");
-            Check.That(Gin.Teaser).IsEqualTo("foo");
-            Check.That(Gin.Images).HasSize(2);
-            Check.That(Gin.Images[0].FileName).IsEqualTo("KRO01046.jpg");
-            Check.That(Gin.Images[1].FileName).IsEqualTo("KRO00364.jpg");
+            Check.That(gin.Id).IsEqualTo(id);
+            Check.That(gin.Name).IsEqualTo("The Stin Dry Gin");
+            Check.That(gin.Teaser).IsEqualTo("foo");
+            Check.That(gin.Images).HasSize(2);
+            Check.That(gin.Images[0].FileName).IsEqualTo("KRO01046.jpg");
+            Check.That(gin.Images[1].FileName).IsEqualTo("KRO00364.jpg");
         }
     }
 }
