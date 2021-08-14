@@ -12,6 +12,8 @@ namespace Bar.Data
 
         internal DbSet<RumDbo> Rums { get; set; } = default!;
 
+        internal DbSet<SubstanceDbo> Substances { get; set; } = default!;
+
 
         public BarDbContext(DbContextOptions<BarDbContext> options)
             : base(options)
