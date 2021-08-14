@@ -22,6 +22,7 @@ namespace Bar.Data
             services.AddDbContext<BarDbContext>(x => x.UseSqlServer(configuration.GetConnectionString("Database")));
             services.AddScoped<IGinRepository, DbGinRepository>();
             services.AddScoped<IRumRepository, DbRumRepository>();
+            services.AddScoped<ISubstanceRepository, DbSubstanceRepository>();
 
             return services;
         }
