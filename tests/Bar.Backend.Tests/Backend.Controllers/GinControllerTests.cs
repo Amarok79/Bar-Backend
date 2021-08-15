@@ -132,7 +132,7 @@ namespace Bar.Backend.Controllers
             var rsp = await mClient.Request("/api/gins/f942f025-7970-4990-84b7-68afba4fc341")
                .PutJsonAsync(
                     new {
-                        Name = "The Duke",
+                        Name = "Toplitz Gin",
                     }
                 );
 
@@ -140,7 +140,7 @@ namespace Bar.Backend.Controllers
 
             Check.That(rsp.StatusCode).IsEqualTo(200);
             Check.That(dto.Id).IsEqualTo(new Guid("f942f025-7970-4990-84b7-68afba4fc341"));
-            Check.That(dto.Name).IsEqualTo("The Duke");
+            Check.That(dto.Name).IsEqualTo("Toplitz Gin");
             Check.That(dto.Teaser).IsEmpty();
             Check.That(dto.Images).IsEmpty();
         }
@@ -161,7 +161,7 @@ namespace Bar.Backend.Controllers
             Check.That(dto[0].Images).ContainsExactly("KRO01046.jpg", "KRO00364.jpg", "FOO.jpg");
 
             Check.That(dto[1].Id).IsEqualTo(new Guid("f942f025-7970-4990-84b7-68afba4fc341"));
-            Check.That(dto[1].Name).IsEqualTo("The Duke");
+            Check.That(dto[1].Name).IsEqualTo("Toplitz Gin");
             Check.That(dto[1].Teaser).IsEmpty();
             Check.That(dto[1].Images).IsEmpty();
         }

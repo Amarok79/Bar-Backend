@@ -26,7 +26,7 @@ namespace Bar.Backend.Controllers
         public async Task<ActionResult<IList<RumDto>>> GetAll()
         {
             var items = await mRepository.GetAllAsync();
-            var dto   = items.Select(x => x.ToDto());
+            var dto   = items.Select(x => x.ToDto()).OrderBy(x => x.Name);
 
             return Ok(dto);
         }
