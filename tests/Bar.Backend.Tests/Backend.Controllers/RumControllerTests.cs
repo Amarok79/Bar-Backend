@@ -21,7 +21,7 @@ namespace Bar.Backend.Controllers
         [SetUp]
         public void Setup()
         {
-            var webHostBuilder = new WebHostBuilder().UseStartup<TestStartup>();
+            var webHostBuilder = new WebHostBuilder().UseStartup(x => new TestStartup("Rum", x.Configuration));
 
             mServer = new TestServer(webHostBuilder);
             mClient = new FlurlClient(mServer.CreateClient());
