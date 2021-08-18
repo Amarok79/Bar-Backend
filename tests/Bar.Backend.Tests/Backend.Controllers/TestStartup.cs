@@ -15,11 +15,14 @@ namespace Bar.Backend.Controllers
 {
     public sealed class TestStartup
     {
+        private readonly String mName;
+
         public IConfiguration Configuration { get; }
 
 
-        public TestStartup(IConfiguration configuration)
+        public TestStartup(String name, IConfiguration configuration)
         {
+            mName         = name;
             Configuration = configuration;
         }
 
@@ -28,10 +31,11 @@ namespace Bar.Backend.Controllers
         {
             services.AddControllers().AddApplicationPart(typeof(RumController).Assembly);
 
-            services.AddDbContext<BarDbContext>(options => options.UseInMemoryDatabase("Bar"));
+            services.AddDbContext<BarDbContext>(options => options.UseInMemoryDatabase(mName));
 
             services.AddScoped<IGinRepository, DbGinRepository>();
             services.AddScoped<IRumRepository, DbRumRepository>();
+            services.AddScoped<ISubstanceRepository, DbSubstanceRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

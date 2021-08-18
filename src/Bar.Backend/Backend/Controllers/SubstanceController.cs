@@ -10,20 +10,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bar.Backend.Controllers
 {
-    [ApiController, Route("api/gins")]
-    public sealed class GinController : ControllerBase
+    [ApiController, Route("api/substances")]
+    public sealed class SubstanceController : ControllerBase
     {
-        private readonly IGinRepository mRepository;
+        private readonly ISubstanceRepository mRepository;
 
 
-        public GinController(IGinRepository repository)
+        public SubstanceController(ISubstanceRepository repository)
         {
             mRepository = repository;
         }
 
 
         [HttpGet]
-        public async Task<ActionResult<IList<GinDto>>> GetAll()
+        public async Task<ActionResult<IList<SubstanceDto>>> GetAll()
         {
             var items = await mRepository.GetAllAsync();
             var dto   = items.Select(x => x.ToDto()).OrderBy(x => x.Name);
@@ -32,7 +32,7 @@ namespace Bar.Backend.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<GinDto>> GetSingle([FromRoute] Guid id)
+        public async Task<ActionResult<SubstanceDto>> GetSingle([FromRoute] String id)
         {
             var item = await mRepository.GetOrDefaultAsync(id);
 
@@ -43,7 +43,7 @@ namespace Bar.Backend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSingle([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteSingle([FromRoute] String id)
         {
             await mRepository.DeleteAsync(id);
 
@@ -51,7 +51,10 @@ namespace Bar.Backend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<GinDto>> CreateOrUpdateSingle([FromRoute] Guid id, [FromBody] GinDto dto)
+        public async Task<ActionResult<SubstanceDto>> CreateOrUpdateSingle(
+            [FromRoute] String id,
+            [FromBody] SubstanceDto dto
+        )
         {
             dto.Id = id;
 

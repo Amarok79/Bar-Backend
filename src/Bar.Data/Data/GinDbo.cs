@@ -30,6 +30,6 @@ namespace Bar.Data
         /// <summary>
         ///     A semi-colon separated list of images of the Gin, e.g. "KRO01046.jpg;KRO00364.jpg".
         /// </summary>
-        public String? Images { get; set; } = default!;
+        public String? Images { get; set; }
     }
 }
