@@ -7,24 +7,23 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace Bar.Data
+namespace Bar.Data;
+
+/// <summary>
+///     Extensions for services collection.
+/// </summary>
+public static class DataServiceCollectionExtensions
 {
     /// <summary>
-    ///     Extensions for services collection.
+    ///     Adds the Rum and Gin repositories.
     /// </summary>
-    public static class DataServiceCollectionExtensions
+    public static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
     {
-        /// <summary>
-        ///     Adds the Rum and Gin repositories.
-        /// </summary>
-        public static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddDbContext<BarDbContext>(x => x.UseSqlServer(configuration.GetConnectionString("Database")));
-            services.AddScoped<IGinRepository, DbGinRepository>();
-            services.AddScoped<IRumRepository, DbRumRepository>();
-            services.AddScoped<ISubstanceRepository, DbSubstanceRepository>();
+        services.AddDbContext<BarDbContext>(x => x.UseSqlServer(configuration.GetConnectionString("Database")));
+        services.AddScoped<IGinRepository, DbGinRepository>();
+        services.AddScoped<IRumRepository, DbRumRepository>();
+        services.AddScoped<ISubstanceRepository, DbSubstanceRepository>();
 
-            return services;
-        }
+        return services;
     }
 }

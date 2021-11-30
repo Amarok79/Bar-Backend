@@ -10,40 +10,39 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 
-namespace Bar.Backend
+namespace Bar.Backend;
+
+public sealed class Startup
 {
-    public sealed class Startup
+    public IConfiguration Configuration { get; }
+
+
+    public Startup(IConfiguration configuration)
     {
-        public IConfiguration Configuration { get; }
+        Configuration = configuration;
+    }
 
 
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
 
+        services.AddControllers();
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
+        services.AddRepositories(Configuration);
+    }
 
-            services.AddControllers();
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
+            app.UseDeveloperExceptionPage();
 
-            services.AddRepositories(Configuration);
-        }
+        app.UseMiddleware<ApiKeyMiddleware>();
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-                app.UseDeveloperExceptionPage();
+        app.UseRouting();
 
-            app.UseMiddleware<ApiKeyMiddleware>();
+        app.UseAuthorization();
 
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(x => x.MapControllers());
-        }
+        app.UseEndpoints(x => x.MapControllers());
     }
 }

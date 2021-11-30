@@ -3,16 +3,15 @@
 using System;
 
 
-namespace Bar.Backend.Controllers
+namespace Bar.Backend.Controllers;
+
+/// <summary>
+///     Represents Version information.
+/// </summary>
+public sealed class VersionDto
 {
     /// <summary>
-    ///     Represents Version information.
+    ///     The version of the Web Api server.
     /// </summary>
-    public sealed class VersionDto
-    {
-        /// <summary>
-        ///     The version of the Web Api server.
-        /// </summary>
-        public String? ServerVersion { get; set; }
-    }
+    public String? ServerVersion { get; set; }
 }

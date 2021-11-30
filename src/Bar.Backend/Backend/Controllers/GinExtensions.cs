@@ -5,28 +5,31 @@ using System.Linq;
 using Bar.Domain;
 
 
-namespace Bar.Backend.Controllers
+namespace Bar.Backend.Controllers;
+
+public static class GinExtensions
 {
-    public static class GinExtensions
+    public static Gin ToEntity(this GinDto dto)
     {
-        public static Gin ToEntity(this GinDto dto)
-        {
-            dto.Id ??= Guid.NewGuid();
+        dto.Id ??= Guid.NewGuid();
 
-            return new Gin(dto.Id.Value, dto.Name) {
-                Teaser = dto.Teaser ?? String.Empty,
-                Images = dto.Images is null ? Array.Empty<Image>() : dto.Images.Select(x => new Image(x)).ToList(),
-            };
-        }
+        return new Gin(dto.Id.Value, dto.Name) {
+            Teaser = dto.Teaser ?? String.Empty,
+            Images = dto.Images is null
+                ? Array.Empty<Image>()
+                : dto.Images.Select(x => new Image(x))
+                   .ToList(),
+        };
+    }
 
-        public static GinDto ToDto(this Gin entity)
-        {
-            return new GinDto {
-                Id     = entity.Id,
-                Name   = entity.Name,
-                Teaser = entity.Teaser,
-                Images = entity.Images.Select(x => x.FileName).ToList(),
-            };
-        }
+    public static GinDto ToDto(this Gin entity)
+    {
+        return new GinDto {
+            Id     = entity.Id,
+            Name   = entity.Name,
+            Teaser = entity.Teaser,
+            Images = entity.Images.Select(x => x.FileName)
+               .ToList(),
+        };
     }
 }

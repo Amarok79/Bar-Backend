@@ -6,74 +6,101 @@ using NFluent;
 using NUnit.Framework;
 
 
-namespace Bar.Data
+namespace Bar.Data;
+
+[TestFixture]
+public class SubstanceExtensionsTests
 {
-    [TestFixture]
-    public class SubstanceExtensionsTests
+    [Test]
+    public void ToDbo_Id_Name()
     {
-        [Test]
-        public void ToDbo_Id_Name()
-        {
-            var entity = new Substance("KEY", "Grand Marnier");
-            var dbo    = entity.ToDbo();
+        var entity = new Substance("KEY", "Grand Marnier");
+        var dbo    = entity.ToDbo();
 
-            Check.That(dbo.Id).IsEqualTo("KEY");
-            Check.That(dbo.Name).IsEqualTo("Grand Marnier");
-            Check.That(dbo.Category).IsNull();
-            Check.That(dbo.Unit).IsNull();
-        }
+        Check.That(dbo.Id)
+           .IsEqualTo("KEY");
 
-        [Test]
-        public void ToDbo_Id_Name_Category_Unit()
-        {
-            var entity = new Substance("KEY", "Grand Marnier") {
-                Category = "Liqueurs",
-                Unit     = "cl",
-            };
+        Check.That(dbo.Name)
+           .IsEqualTo("Grand Marnier");
 
-            var dbo = entity.ToDbo();
+        Check.That(dbo.Category)
+           .IsNull();
 
-            Check.That(dbo.Id).IsEqualTo("KEY");
-            Check.That(dbo.Name).IsEqualTo("Grand Marnier");
-            Check.That(dbo.Category).IsEqualTo("Liqueurs");
-            Check.That(dbo.Unit).IsEqualTo("cl");
-        }
+        Check.That(dbo.Unit)
+           .IsNull();
+    }
+
+    [Test]
+    public void ToDbo_Id_Name_Category_Unit()
+    {
+        var entity = new Substance("KEY", "Grand Marnier") {
+            Category = "Liqueurs",
+            Unit     = "cl",
+        };
+
+        var dbo = entity.ToDbo();
+
+        Check.That(dbo.Id)
+           .IsEqualTo("KEY");
+
+        Check.That(dbo.Name)
+           .IsEqualTo("Grand Marnier");
+
+        Check.That(dbo.Category)
+           .IsEqualTo("Liqueurs");
+
+        Check.That(dbo.Unit)
+           .IsEqualTo("cl");
+    }
 
 
-        [Test]
-        public void ToEntity_Id_Name()
-        {
-            var dbo = new SubstanceDbo {
-                Id       = "KEY",
-                Name     = "Grand Marnier",
-                Category = null,
-                Unit     = null,
-            };
+    [Test]
+    public void ToEntity_Id_Name()
+    {
+        var dbo = new SubstanceDbo {
+            Id       = "KEY",
+            Name     = "Grand Marnier",
+            Category = null,
+            Unit     = null,
+        };
 
-            var entity = dbo.ToEntity();
+        var entity = dbo.ToEntity();
 
-            Check.That(entity.Id).IsEqualTo("KEY");
-            Check.That(entity.Name).IsEqualTo("Grand Marnier");
-            Check.That(entity.Category).IsNull();
-            Check.That(entity.Unit).IsNull();
-        }
+        Check.That(entity.Id)
+           .IsEqualTo("KEY");
 
-        [Test]
-        public void ToEntity_Id_Name_Category_Unit()
-        {
-            var dbo = new SubstanceDbo {
-                Id       = "KEY",
-                Name     = "Grand Marnier",
-                Category = "Liqueurs",
-                Unit     = "cl",
-            };
+        Check.That(entity.Name)
+           .IsEqualTo("Grand Marnier");
 
-            var entity = dbo.ToEntity();
+        Check.That(entity.Category)
+           .IsNull();
 
-            Check.That(entity.Id).IsEqualTo("KEY");
-            Check.That(entity.Name).IsEqualTo("Grand Marnier");
-            Check.That(entity.Category).IsEqualTo("Liqueurs");
-            Check.That(entity.Unit).IsEqualTo("cl");
-        }
+        Check.That(entity.Unit)
+           .IsNull();
+    }
+
+    [Test]
+    public void ToEntity_Id_Name_Category_Unit()
+    {
+        var dbo = new SubstanceDbo {
+            Id       = "KEY",
+            Name     = "Grand Marnier",
+            Category = "Liqueurs",
+            Unit     = "cl",
+        };
+
+        var entity = dbo.ToEntity();
+
+        Check.That(entity.Id)
+           .IsEqualTo("KEY");
+
+        Check.That(entity.Name)
+           .IsEqualTo("Grand Marnier");
+
+        Check.That(entity.Category)
+           .IsEqualTo("Liqueurs");
+
+        Check.That(entity.Unit)
+           .IsEqualTo("cl");
     }
 }

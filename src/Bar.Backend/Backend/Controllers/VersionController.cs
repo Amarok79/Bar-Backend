@@ -5,23 +5,22 @@ using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace Bar.Backend.Controllers
+namespace Bar.Backend.Controllers;
+
+[ApiController, Route("api/version")]
+public sealed class VersionController : ControllerBase
 {
-    [ApiController, Route("api/version")]
-    public sealed class VersionController : ControllerBase
+    [HttpGet]
+    public IActionResult Get()
     {
-        [HttpGet]
-        public IActionResult Get()
-        {
-            var version = Assembly.GetEntryAssembly()
-              ?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()
-              ?.InformationalVersion;
+        var version = Assembly.GetEntryAssembly()
+          ?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+          ?.InformationalVersion;
 
-            var dto = new VersionDto {
-                ServerVersion = version,
-            };
+        var dto = new VersionDto {
+            ServerVersion = version,
+        };
 
-            return Ok(dto);
-        }
+        return Ok(dto);
     }
 }
