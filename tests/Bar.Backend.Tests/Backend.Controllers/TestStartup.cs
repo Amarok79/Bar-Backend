@@ -11,44 +11,44 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace Bar.Backend.Controllers
+namespace Bar.Backend.Controllers;
+
+public sealed class TestStartup
 {
-    public sealed class TestStartup
+    private readonly String mName;
+
+    public IConfiguration Configuration { get; }
+
+
+    public TestStartup(String name, IConfiguration configuration)
     {
-        private readonly String mName;
-
-        public IConfiguration Configuration { get; }
-
-
-        public TestStartup(String name, IConfiguration configuration)
-        {
-            mName         = name;
-            Configuration = configuration;
-        }
+        mName         = name;
+        Configuration = configuration;
+    }
 
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers().AddApplicationPart(typeof(RumController).Assembly);
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddControllers()
+           .AddApplicationPart(typeof(RumController).Assembly);
 
-            services.AddDbContext<BarDbContext>(options => options.UseInMemoryDatabase(mName));
+        services.AddDbContext<BarDbContext>(options => options.UseInMemoryDatabase(mName));
 
-            services.AddScoped<IGinRepository, DbGinRepository>();
-            services.AddScoped<IRumRepository, DbRumRepository>();
-            services.AddScoped<ISubstanceRepository, DbSubstanceRepository>();
-        }
+        services.AddScoped<IGinRepository, DbGinRepository>();
+        services.AddScoped<IRumRepository, DbRumRepository>();
+        services.AddScoped<ISubstanceRepository, DbSubstanceRepository>();
+    }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            app.UseDeveloperExceptionPage();
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        app.UseDeveloperExceptionPage();
 
-            app.UseMiddleware<ApiKeyMiddleware>();
+        app.UseMiddleware<ApiKeyMiddleware>();
 
-            app.UseRouting();
+        app.UseRouting();
 
-            app.UseAuthorization();
+        app.UseAuthorization();
 
-            app.UseEndpoints(x => x.MapControllers());
-        }
+        app.UseEndpoints(x => x.MapControllers());
     }
 }
