@@ -29,16 +29,20 @@ public class GinExtensionsTests
 
         Check.That(dbo.Images)
            .IsEmpty();
+
+        Check.That(dbo.IsDraft)
+           .IsTrue();
     }
 
     [Test]
-    public void ToDbo_Id_Name_Teaser_Images()
+    public void ToDbo_Id_Name_Teaser_Images_IsDraft()
     {
         var id = Guid.NewGuid();
 
         var entity = new Gin(id, "The Stin Dry Gin") {
-            Teaser = "Styrian Dry Gin",
-            Images = new[] { new Image("KRO01046.jpg"), new Image("KRO00364.jpg") },
+            Teaser  = "Styrian Dry Gin",
+            Images  = new[] { new Image("KRO01046.jpg"), new Image("KRO00364.jpg") },
+            IsDraft = true,
         };
 
         var dbo = entity.ToDbo();
@@ -54,6 +58,9 @@ public class GinExtensionsTests
 
         Check.That(dbo.Images)
            .IsEqualTo("KRO01046.jpg;KRO00364.jpg");
+
+        Check.That(dbo.IsDraft)
+           .IsTrue();
     }
 
 
@@ -63,10 +70,11 @@ public class GinExtensionsTests
         var id = Guid.NewGuid();
 
         var dbo = new GinDbo {
-            Id     = id,
-            Name   = "The Stin Dry Gin",
-            Teaser = null,
-            Images = null,
+            Id      = id,
+            Name    = "The Stin Dry Gin",
+            Teaser  = null,
+            Images  = null,
+            IsDraft = true,
         };
 
         var entity = dbo.ToEntity();
@@ -82,18 +90,22 @@ public class GinExtensionsTests
 
         Check.That(entity.Images)
            .IsEmpty();
+
+        Check.That(entity.IsDraft)
+           .IsTrue();
     }
 
     [Test]
-    public void ToEntity_Id_Name_Teaser_Images()
+    public void ToEntity_Id_Name_Teaser_Images_IsDraft()
     {
         var id = Guid.NewGuid();
 
         var dbo = new GinDbo {
-            Id     = id,
-            Name   = "The Stin Dry Gin",
-            Teaser = "Styrian Dry Gin",
-            Images = "KRO01046.jpg;KRO00364.jpg",
+            Id      = id,
+            Name    = "The Stin Dry Gin",
+            Teaser  = "Styrian Dry Gin",
+            Images  = "KRO01046.jpg;KRO00364.jpg",
+            IsDraft = true,
         };
 
         var entity = dbo.ToEntity();
@@ -121,5 +133,8 @@ public class GinExtensionsTests
                    .FileName
             )
            .IsEqualTo("KRO00364.jpg");
+
+        Check.That(entity.IsDraft)
+           .IsTrue();
     }
 }
