@@ -32,8 +32,10 @@ public sealed class Startup
         services.AddRepositories(Configuration);
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDatabaseService databaseService)
     {
+        databaseService.Migrate();
+
         if (env.IsDevelopment())
             app.UseDeveloperExceptionPage();
 
