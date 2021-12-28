@@ -23,6 +23,7 @@ public static class DataServiceCollectionExtensions
         services.AddScoped<IGinRepository, DbGinRepository>();
         services.AddScoped<IRumRepository, DbRumRepository>();
         services.AddScoped<ISubstanceRepository, DbSubstanceRepository>();
+        services.AddTransient<IDatabaseService, DatabaseServiceImpl>();
 
         return services;
     }
