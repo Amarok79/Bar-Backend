@@ -27,4 +27,9 @@ public sealed record Gin(Guid Id, String Name)
     ///     A list of images of the Gin.
     /// </summary>
     public IReadOnlyList<Image> Images { get; init; } = Array.Empty<Image>();
+
+    /// <summary>
+    ///     Indicates whether the Gin is in draft-mode.
+    /// </summary>
+    public Boolean IsDraft { get; init; } = true;
 }

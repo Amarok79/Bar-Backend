@@ -29,10 +29,15 @@ public class GinTests
         Check.That(gin.Images)
            .IsEmpty();
 
+        Check.That(gin.IsDraft)
+           .IsTrue();
+
+
         gin = new Gin(id, "The Stin Dry Gin") {
             Teaser = "Styrian Dry Gin",
             Images =
                 new[] { new Image("KRO01046.jpg"), new Image("KRO00364.jpg") },
+            IsDraft = false,
         };
 
         Check.That(gin.Id)
@@ -47,6 +52,9 @@ public class GinTests
         Check.That(gin.Images)
            .HasSize(2);
 
+        Check.That(gin.IsDraft)
+           .IsFalse();
+
         Check.That(
                 gin.Images[0]
                    .FileName
@@ -59,7 +67,11 @@ public class GinTests
             )
            .IsEqualTo("KRO00364.jpg");
 
-        gin = gin with { Teaser = "foo" };
+
+        gin = gin with {
+            Teaser = "foo",
+            IsDraft = true,
+        };
 
         Check.That(gin.Id)
            .IsEqualTo(id);
@@ -84,5 +96,8 @@ public class GinTests
                    .FileName
             )
            .IsEqualTo("KRO00364.jpg");
+
+        Check.That(gin.IsDraft)
+           .IsTrue();
     }
 }

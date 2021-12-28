@@ -19,6 +19,7 @@ public static class GinExtensions
                 ? Array.Empty<Image>()
                 : dto.Images.Select(x => new Image(x))
                    .ToList(),
+            IsDraft = dto.IsDraft,
         };
     }
 
@@ -30,6 +31,7 @@ public static class GinExtensions
             Teaser = entity.Teaser,
             Images = entity.Images.Select(x => x.FileName)
                .ToList(),
+            IsDraft = entity.IsDraft,
         };
     }
 }

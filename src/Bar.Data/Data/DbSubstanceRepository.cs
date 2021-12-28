@@ -21,7 +21,7 @@ internal sealed class DbSubstanceRepository : ISubstanceRepository
     }
 
 
-    public async Task<IReadOnlyList<Substance>> GetAllAsync()
+    public async Task<IReadOnlyList<Substance>> GetAllAsync(Boolean includeDrafts = false)
     {
         return await mDbContext.Substances.AsNoTracking()
            .Select(x => x.ToEntity())
