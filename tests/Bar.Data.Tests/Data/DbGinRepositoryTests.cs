@@ -44,17 +44,19 @@ public class DbGinRepositoryTests
     {
         mContext.Gins.Add(
             new GinDbo {
-                Id     = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"),
-                Name   = "The Stin Dry Gin",
-                Teaser = "Styrian Dry Gin",
-                Images = "KRO01046.jpg;KRO00364.jpg",
+                Id      = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"),
+                Name    = "The Stin Dry Gin",
+                Teaser  = "Styrian Dry Gin",
+                Images  = "KRO01046.jpg;KRO00364.jpg",
+                IsDraft = false,
             }
         );
 
         mContext.Gins.Add(
             new GinDbo {
-                Id   = new Guid("01691cd5-1102-4593-9c27-72b567871338"),
-                Name = "The Duke",
+                Id      = new Guid("01691cd5-1102-4593-9c27-72b567871338"),
+                Name    = "The Duke",
+                IsDraft = true,
             }
         );
 
@@ -67,18 +69,23 @@ public class DbGinRepositoryTests
     [Test]
     public async Task GetAllAsync_NoItems()
     {
-        var result = await mRepository.GetAllAsync();
+        var result = await mRepository.GetAllAsync(true);
+
+        Check.That(result)
+           .IsEmpty();
+
+        result = await mRepository.GetAllAsync();
 
         Check.That(result)
            .IsEmpty();
     }
 
     [Test]
-    public async Task GetAllAsync_WithItems()
+    public async Task GetAllAsync_WithItems_IncludingDrafts()
     {
         await AddSampleItems();
 
-        var result = await mRepository.GetAllAsync();
+        var result = await mRepository.GetAllAsync(true);
 
         Check.That(result)
            .HasSize(2);
@@ -144,6 +151,55 @@ public class DbGinRepositoryTests
                    .Images
             )
            .IsEmpty();
+    }
+
+    [Test]
+    public async Task GetAllAsync_WithItems_NotIncludingDrafts()
+    {
+        await AddSampleItems();
+
+        var result = await mRepository.GetAllAsync();
+
+        Check.That(result)
+           .HasSize(1);
+
+        Check.That(
+                result[0]
+                   .Id
+            )
+           .IsEqualTo(new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"));
+
+        Check.That(
+                result[0]
+                   .Name
+            )
+           .IsEqualTo("The Stin Dry Gin");
+
+        Check.That(
+                result[0]
+                   .Teaser
+            )
+           .IsEqualTo("Styrian Dry Gin");
+
+        Check.That(
+                result[0]
+                   .Images
+            )
+           .HasSize(2);
+
+        Check.That(
+                result[0]
+                   .Images[0]
+                   .FileName
+            )
+           .IsEqualTo("KRO01046.jpg");
+
+        Check.That(
+                result[0]
+                   .Images[1]
+                   .FileName
+            )
+           .IsEqualTo("KRO00364.jpg");
     }
 
 
