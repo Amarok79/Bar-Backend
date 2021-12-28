@@ -13,18 +13,20 @@ internal static class GinExtensions
     public static GinDbo ToDbo(this Gin entity)
     {
         return new GinDbo {
-            Id     = entity.Id,
-            Name   = entity.Name,
-            Teaser = entity.Teaser,
-            Images = String.Join(';', entity.Images.Select(x => x.FileName)),
+            Id      = entity.Id,
+            Name    = entity.Name,
+            Teaser  = entity.Teaser,
+            Images  = String.Join(';', entity.Images.Select(x => x.FileName)),
+            IsDraft = entity.IsDraft,
         };
     }
 
     public static Gin ToEntity(this GinDbo dbo)
     {
         return new Gin(dbo.Id, dbo.Name) {
-            Teaser = dbo.Teaser ?? String.Empty,
-            Images = mapImages(),
+            Teaser  = dbo.Teaser ?? String.Empty,
+            Images  = mapImages(),
+            IsDraft = dbo.IsDraft,
         };
 
 
