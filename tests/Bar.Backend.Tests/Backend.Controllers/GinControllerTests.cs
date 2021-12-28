@@ -44,7 +44,8 @@ public class GinControllerTests
         await _UpdateItem_1();
         await _GetSingle_Returns_Item_1();
         await _CreateItem_2();
-        await _GetAll_Returns_Items();
+        await _GetAll_Returns_Items_IncludingDrafts();
+        await _GetAll_Returns_Items_NotIncludingDrafts();
         await _DeleteItem_1();
         await _GetSingle_Returns_NotFound();
         await _DeleteItem_1();
@@ -103,6 +104,9 @@ public class GinControllerTests
 
         Check.That(dto.Images)
            .ContainsExactly("KRO01046.jpg", "KRO00364.jpg");
+
+        Check.That(dto.IsDraft)
+           .IsTrue();
     }
 
     private async Task _UpdateItem_1()
@@ -110,10 +114,11 @@ public class GinControllerTests
         var rsp = await mClient.Request("/api/gins/6983cc47-047b-4e7c-8f17-af292ed80bd1")
            .PutJsonAsync(
                 new {
-                    Id     = Guid.NewGuid(),
-                    Name   = "The Stin Dry Gin-2",
-                    Teaser = "Styrian Dry Gin-2",
-                    Images = new[] { "KRO01046.jpg", "KRO00364.jpg", "FOO.jpg" },
+                    Id      = Guid.NewGuid(),
+                    Name    = "The Stin Dry Gin-2",
+                    Teaser  = "Styrian Dry Gin-2",
+                    Images  = new[] { "KRO01046.jpg", "KRO00364.jpg", "FOO.jpg" },
+                    IsDraft = false,
                 }
             );
 
@@ -133,6 +138,9 @@ public class GinControllerTests
 
         Check.That(dto.Images)
            .ContainsExactly("KRO01046.jpg", "KRO00364.jpg", "FOO.jpg");
+
+        Check.That(dto.IsDraft)
+           .IsFalse();
     }
 
     private async Task _GetSingle_Returns_Item_1()
@@ -159,6 +167,9 @@ public class GinControllerTests
 
         Check.That(dto.Images)
            .ContainsExactly("KRO01046.jpg", "KRO00364.jpg", "FOO.jpg");
+
+        Check.That(dto.IsDraft)
+           .IsFalse();
     }
 
     private async Task _CreateItem_2()
@@ -166,7 +177,8 @@ public class GinControllerTests
         var rsp = await mClient.Request("/api/gins/f942f025-7970-4990-84b7-68afba4fc341")
            .PutJsonAsync(
                 new {
-                    Name = "Toplitz Gin",
+                    Name    = "Toplitz Gin",
+                    IsDraft = true,
                 }
             );
 
@@ -186,11 +198,15 @@ public class GinControllerTests
 
         Check.That(dto.Images)
            .IsEmpty();
+
+        Check.That(dto.IsDraft)
+           .IsTrue();
     }
 
-    private async Task _GetAll_Returns_Items()
+    private async Task _GetAll_Returns_Items_IncludingDrafts()
     {
         var rsp = await mClient.Request("/api/gins")
+           .SetQueryParam("includeDrafts", "true")
            .GetAsync();
 
         Check.That(rsp.StatusCode)
@@ -248,6 +264,44 @@ public class GinControllerTests
                    .Images
             )
            .IsEmpty();
+    }
+
+    private async Task _GetAll_Returns_Items_NotIncludingDrafts()
+    {
+        var rsp = await mClient.Request("/api/gins")
+           .GetAsync();
+
+        Check.That(rsp.StatusCode)
+           .IsEqualTo(200);
+
+        var dto = await rsp.GetJsonAsync<GinDto[]>();
+
+        Check.That(dto)
+           .HasSize(1);
+
+        Check.That(
+                dto[0]
+                   .Id
+            )
+           .IsEqualTo(new Guid("6983cc47-047b-4e7c-8f17-af292ed80bd1"));
+
+        Check.That(
+                dto[0]
+                   .Name
+            )
+           .IsEqualTo("The Stin Dry Gin-2");
+
+        Check.That(
+                dto[0]
+                   .Teaser
+            )
+           .IsEqualTo("Styrian Dry Gin-2");
+
+        Check.That(
+                dto[0]
+                   .Images
+            )
+           .ContainsExactly("KRO01046.jpg", "KRO00364.jpg", "FOO.jpg");
     }
 
     private async Task _DeleteItem_1()

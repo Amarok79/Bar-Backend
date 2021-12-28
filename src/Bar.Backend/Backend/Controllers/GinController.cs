@@ -23,9 +23,9 @@ public sealed class GinController : ControllerBase
 
 
     [HttpGet]
-    public async Task<ActionResult<IList<GinDto>>> GetAll()
+    public async Task<ActionResult<IList<GinDto>>> GetAll([FromQuery] Boolean includeDrafts = false)
     {
-        var items = await mRepository.GetAllAsync(true);
+        var items = await mRepository.GetAllAsync(includeDrafts);
 
         var dto = items.Select(x => x.ToDto())
            .OrderBy(x => x.Name);

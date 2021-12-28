@@ -32,7 +32,7 @@ public sealed class GinDto
     public IList<String>? Images { get; set; }
 
     /// <summary>
-    ///     Indicates whether the Gin is in draft-mode.
+    ///     Indicates whether the Gin is in draft-mode. Defaults to true.
     /// </summary>
-    public Boolean IsDraft { get; set; }
+    public Boolean IsDraft { get; set; } = true;
 }
