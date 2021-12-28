@@ -30,4 +30,9 @@ public sealed class GinDto
     ///     A list of images of the Gin, e.g. "KRO01046.jpg", "KRO00364.jpg".
     /// </summary>
     public IList<String>? Images { get; set; }
+
+    /// <summary>
+    ///     Indicates whether the Gin is in draft-mode.
+    /// </summary>
+    public Boolean IsDraft { get; set; }
 }
