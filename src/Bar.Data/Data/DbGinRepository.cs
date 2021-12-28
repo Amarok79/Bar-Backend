@@ -21,7 +21,7 @@ internal sealed class DbGinRepository : IGinRepository
     }
 
 
-    public async Task<IReadOnlyList<Gin>> GetAllAsync()
+    public async Task<IReadOnlyList<Gin>> GetAllAsync(Boolean includeDrafts = false)
     {
         return await mDbContext.Gins.AsNoTracking()
            .Select(x => x.ToEntity())

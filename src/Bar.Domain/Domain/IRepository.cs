@@ -15,7 +15,7 @@ public interface IRepository<in TId, TItem>
     /// <summary>
     ///     Gets all items.
     /// </summary>
-    Task<IReadOnlyList<TItem>> GetAllAsync();
+    Task<IReadOnlyList<TItem>> GetAllAsync(Boolean includeDrafts = false);
 
     /// <summary>
     ///     Gets the item with the given Id, or null if not existing.

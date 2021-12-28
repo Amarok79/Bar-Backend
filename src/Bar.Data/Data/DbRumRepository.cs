@@ -21,7 +21,7 @@ internal sealed class DbRumRepository : IRumRepository
     }
 
 
-    public async Task<IReadOnlyList<Rum>> GetAllAsync()
+    public async Task<IReadOnlyList<Rum>> GetAllAsync(Boolean includeDrafts = false)
     {
         return await mDbContext.Rums.AsNoTracking()
            .Select(x => x.ToEntity())
