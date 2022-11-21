@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using System.Collections.Generic;
@@ -8,15 +8,16 @@ using Bar.Domain;
 
 namespace Bar.Data;
 
+
 internal static class GinExtensions
 {
     public static GinDbo ToDbo(this Gin entity)
     {
         return new GinDbo {
-            Id      = entity.Id,
-            Name    = entity.Name,
-            Teaser  = entity.Teaser,
-            Images  = String.Join(';', entity.Images.Select(x => x.FileName)),
+            Id = entity.Id,
+            Name = entity.Name,
+            Teaser = entity.Teaser,
+            Images = String.Join(';', entity.Images.Select(x => x.FileName)),
             IsDraft = entity.IsDraft,
         };
     }
@@ -24,8 +25,8 @@ internal static class GinExtensions
     public static Gin ToEntity(this GinDbo dbo)
     {
         return new Gin(dbo.Id, dbo.Name) {
-            Teaser  = dbo.Teaser ?? String.Empty,
-            Images  = mapImages(),
+            Teaser = dbo.Teaser ?? String.Empty,
+            Images = mapImages(),
             IsDraft = dbo.IsDraft,
         };
 
@@ -34,9 +35,7 @@ internal static class GinExtensions
         {
             return dbo.Images == null
                 ? Array.Empty<Image>()
-                : dbo.Images.Split(';', StringSplitOptions.RemoveEmptyEntries)
-                   .Select(x => new Image(x))
-                   .ToList();
+                : dbo.Images.Split(';', StringSplitOptions.RemoveEmptyEntries).Select(x => new Image(x)).ToList();
         }
     }
 }

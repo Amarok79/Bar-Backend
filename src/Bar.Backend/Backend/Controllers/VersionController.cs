@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using System.Reflection;
@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 
 namespace Bar.Backend.Controllers;
+
 
 [ApiController, Route("api/version")]
 public sealed class VersionController : ControllerBase

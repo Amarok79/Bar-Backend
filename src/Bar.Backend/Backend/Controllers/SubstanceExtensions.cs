@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using System.Globalization;
@@ -7,26 +7,26 @@ using Bar.Domain;
 
 namespace Bar.Backend.Controllers;
 
+
 public static class SubstanceExtensions
 {
     public static Substance ToEntity(this SubstanceDto dto)
     {
-        dto.Id ??= Guid.NewGuid()
-           .ToString("N", CultureInfo.InvariantCulture);
+        dto.Id ??= Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
         return new Substance(dto.Id, dto.Name) {
             Category = dto.Category,
-            Unit     = dto.Unit,
+            Unit = dto.Unit,
         };
     }
 
     public static SubstanceDto ToDto(this Substance entity)
     {
         return new SubstanceDto {
-            Id       = entity.Id,
-            Name     = entity.Name,
+            Id = entity.Id,
+            Name = entity.Name,
             Category = entity.Category,
-            Unit     = entity.Unit,
+            Unit = entity.Unit,
         };
     }
 }

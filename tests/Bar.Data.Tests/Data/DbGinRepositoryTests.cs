@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using System.Threading.Tasks;
@@ -10,6 +10,7 @@ using NUnit.Framework;
 
 namespace Bar.Data;
 
+
 [TestFixture]
 public class DbGinRepositoryTests
 {
@@ -20,10 +21,7 @@ public class DbGinRepositoryTests
     [SetUp]
     public void Setup()
     {
-        var options = new DbContextOptionsBuilder<BarDbContext>().UseInMemoryDatabase(
-                Guid.NewGuid()
-                   .ToString()
-            )
+        var options = new DbContextOptionsBuilder<BarDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString())
            .Options;
 
         mContext = new BarDbContext(options);
@@ -44,18 +42,18 @@ public class DbGinRepositoryTests
     {
         mContext.Gins.Add(
             new GinDbo {
-                Id      = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"),
-                Name    = "The Stin Dry Gin",
-                Teaser  = "Styrian Dry Gin",
-                Images  = "KRO01046.jpg;KRO00364.jpg",
+                Id = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"),
+                Name = "The Stin Dry Gin",
+                Teaser = "Styrian Dry Gin",
+                Images = "KRO01046.jpg;KRO00364.jpg",
                 IsDraft = false,
             }
         );
 
         mContext.Gins.Add(
             new GinDbo {
-                Id      = new Guid("01691cd5-1102-4593-9c27-72b567871338"),
-                Name    = "The Duke",
+                Id = new Guid("01691cd5-1102-4593-9c27-72b567871338"),
+                Name = "The Duke",
                 IsDraft = true,
             }
         );
@@ -71,13 +69,11 @@ public class DbGinRepositoryTests
     {
         var result = await mRepository.GetAllAsync(true);
 
-        Check.That(result)
-           .IsEmpty();
+        Check.That(result).IsEmpty();
 
         result = await mRepository.GetAllAsync();
 
-        Check.That(result)
-           .IsEmpty();
+        Check.That(result).IsEmpty();
     }
 
     [Test]
@@ -87,70 +83,27 @@ public class DbGinRepositoryTests
 
         var result = await mRepository.GetAllAsync(true);
 
-        Check.That(result)
-           .HasSize(2);
+        Check.That(result).HasSize(2);
 
-        Check.That(
-                result[0]
-                   .Id
-            )
-           .IsEqualTo(new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"));
+        Check.That(result[0].Id).IsEqualTo(new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"));
 
-        Check.That(
-                result[0]
-                   .Name
-            )
-           .IsEqualTo("The Stin Dry Gin");
+        Check.That(result[0].Name).IsEqualTo("The Stin Dry Gin");
 
-        Check.That(
-                result[0]
-                   .Teaser
-            )
-           .IsEqualTo("Styrian Dry Gin");
+        Check.That(result[0].Teaser).IsEqualTo("Styrian Dry Gin");
 
-        Check.That(
-                result[0]
-                   .Images
-            )
-           .HasSize(2);
+        Check.That(result[0].Images).HasSize(2);
 
-        Check.That(
-                result[0]
-                   .Images[0]
-                   .FileName
-            )
-           .IsEqualTo("KRO01046.jpg");
+        Check.That(result[0].Images[0].FileName).IsEqualTo("KRO01046.jpg");
 
-        Check.That(
-                result[0]
-                   .Images[1]
-                   .FileName
-            )
-           .IsEqualTo("KRO00364.jpg");
+        Check.That(result[0].Images[1].FileName).IsEqualTo("KRO00364.jpg");
 
-        Check.That(
-                result[1]
-                   .Id
-            )
-           .IsEqualTo(new Guid("01691cd5-1102-4593-9c27-72b567871338"));
+        Check.That(result[1].Id).IsEqualTo(new Guid("01691cd5-1102-4593-9c27-72b567871338"));
 
-        Check.That(
-                result[1]
-                   .Name
-            )
-           .IsEqualTo("The Duke");
+        Check.That(result[1].Name).IsEqualTo("The Duke");
 
-        Check.That(
-                result[1]
-                   .Teaser
-            )
-           .IsEmpty();
+        Check.That(result[1].Teaser).IsEmpty();
 
-        Check.That(
-                result[1]
-                   .Images
-            )
-           .IsEmpty();
+        Check.That(result[1].Images).IsEmpty();
     }
 
     [Test]
@@ -160,57 +113,29 @@ public class DbGinRepositoryTests
 
         var result = await mRepository.GetAllAsync();
 
-        Check.That(result)
-           .HasSize(1);
+        Check.That(result).HasSize(1);
 
-        Check.That(
-                result[0]
-                   .Id
-            )
-           .IsEqualTo(new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"));
+        Check.That(result[0].Id).IsEqualTo(new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"));
 
-        Check.That(
-                result[0]
-                   .Name
-            )
-           .IsEqualTo("The Stin Dry Gin");
+        Check.That(result[0].Name).IsEqualTo("The Stin Dry Gin");
 
-        Check.That(
-                result[0]
-                   .Teaser
-            )
-           .IsEqualTo("Styrian Dry Gin");
+        Check.That(result[0].Teaser).IsEqualTo("Styrian Dry Gin");
 
-        Check.That(
-                result[0]
-                   .Images
-            )
-           .HasSize(2);
+        Check.That(result[0].Images).HasSize(2);
 
-        Check.That(
-                result[0]
-                   .Images[0]
-                   .FileName
-            )
-           .IsEqualTo("KRO01046.jpg");
+        Check.That(result[0].Images[0].FileName).IsEqualTo("KRO01046.jpg");
 
-        Check.That(
-                result[0]
-                   .Images[1]
-                   .FileName
-            )
-           .IsEqualTo("KRO00364.jpg");
+        Check.That(result[0].Images[1].FileName).IsEqualTo("KRO00364.jpg");
     }
 
 
     [Test]
     public async Task GetOrDefaultAsync_NoItem()
     {
-        var id     = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55");
+        var id = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55");
         var result = await mRepository.GetOrDefaultAsync(id);
 
-        Check.That(result)
-           .IsNull();
+        Check.That(result).IsNull();
     }
 
     [Test]
@@ -218,46 +143,32 @@ public class DbGinRepositoryTests
     {
         await AddSampleItems();
 
-        var id     = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55");
+        var id = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55");
         var result = await mRepository.GetOrDefaultAsync(id);
 
-        Check.That(result)
-           .IsNotNull();
+        Check.That(result).IsNotNull();
 
-        Check.That(result.Id)
-           .IsEqualTo(new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"));
+        Check.That(result.Id).IsEqualTo(new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"));
 
-        Check.That(result.Name)
-           .IsEqualTo("The Stin Dry Gin");
+        Check.That(result.Name).IsEqualTo("The Stin Dry Gin");
 
-        Check.That(result.Teaser)
-           .IsEqualTo("Styrian Dry Gin");
+        Check.That(result.Teaser).IsEqualTo("Styrian Dry Gin");
 
-        Check.That(result.Images)
-           .HasSize(2);
+        Check.That(result.Images).HasSize(2);
 
-        Check.That(
-                result.Images[0]
-                   .FileName
-            )
-           .IsEqualTo("KRO01046.jpg");
+        Check.That(result.Images[0].FileName).IsEqualTo("KRO01046.jpg");
 
-        Check.That(
-                result.Images[1]
-                   .FileName
-            )
-           .IsEqualTo("KRO00364.jpg");
+        Check.That(result.Images[1].FileName).IsEqualTo("KRO00364.jpg");
     }
 
 
     [Test]
     public async Task DeleteAsync_NotExisting()
     {
-        var id     = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55");
+        var id = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55");
         var result = await mRepository.DeleteAsync(id);
 
-        Check.That(result)
-           .IsFalse();
+        Check.That(result).IsFalse();
     }
 
     [Test]
@@ -265,16 +176,14 @@ public class DbGinRepositoryTests
     {
         await AddSampleItems();
 
-        var id     = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55");
+        var id = new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55");
         var result = await mRepository.DeleteAsync(id);
 
-        Check.That(result)
-           .IsTrue();
+        Check.That(result).IsTrue();
 
         result = await mRepository.DeleteAsync(id);
 
-        Check.That(result)
-           .IsFalse();
+        Check.That(result).IsFalse();
     }
 
 
@@ -290,31 +199,21 @@ public class DbGinRepositoryTests
 
         var result = await mRepository.AddOrUpdateAsync(entity);
 
-        Check.That(result)
-           .IsTrue();
+        Check.That(result).IsTrue();
 
         var item = await mRepository.GetOrDefaultAsync(id);
 
-        Check.That(item)
-           .IsNotNull();
+        Check.That(item).IsNotNull();
 
-        Check.That(item.Id)
-           .IsEqualTo(new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"));
+        Check.That(item.Id).IsEqualTo(new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"));
 
-        Check.That(item.Name)
-           .IsEqualTo("The Stin Dry Gin-2");
+        Check.That(item.Name).IsEqualTo("The Stin Dry Gin-2");
 
-        Check.That(item.Teaser)
-           .IsEqualTo("Styrian Dry Gin-2");
+        Check.That(item.Teaser).IsEqualTo("Styrian Dry Gin-2");
 
-        Check.That(item.Images)
-           .HasSize(1);
+        Check.That(item.Images).HasSize(1);
 
-        Check.That(
-                item.Images[0]
-                   .FileName
-            )
-           .IsEqualTo("KRO01046-2.jpg");
+        Check.That(item.Images[0].FileName).IsEqualTo("KRO01046-2.jpg");
     }
 
     [Test]
@@ -331,30 +230,20 @@ public class DbGinRepositoryTests
 
         var result = await mRepository.AddOrUpdateAsync(entity);
 
-        Check.That(result)
-           .IsFalse();
+        Check.That(result).IsFalse();
 
         var item = await mRepository.GetOrDefaultAsync(id);
 
-        Check.That(item)
-           .IsNotNull();
+        Check.That(item).IsNotNull();
 
-        Check.That(item.Id)
-           .IsEqualTo(new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"));
+        Check.That(item.Id).IsEqualTo(new Guid("a8ca512d-bb7b-4fd8-9e4d-c9bb12ce2b55"));
 
-        Check.That(item.Name)
-           .IsEqualTo("The Stin Dry Gin-2");
+        Check.That(item.Name).IsEqualTo("The Stin Dry Gin-2");
 
-        Check.That(item.Teaser)
-           .IsEqualTo("Styrian Dry Gin-2");
+        Check.That(item.Teaser).IsEqualTo("Styrian Dry Gin-2");
 
-        Check.That(item.Images)
-           .HasSize(1);
+        Check.That(item.Images).HasSize(1);
 
-        Check.That(
-                item.Images[0]
-                   .FileName
-            )
-           .IsEqualTo("KRO01046-2.jpg");
+        Check.That(item.Images[0].FileName).IsEqualTo("KRO01046-2.jpg");
     }
 }

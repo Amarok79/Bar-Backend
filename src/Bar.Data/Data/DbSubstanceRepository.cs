@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 namespace Bar.Data;
+
 
 internal sealed class DbSubstanceRepository : ISubstanceRepository
 {
@@ -23,15 +24,12 @@ internal sealed class DbSubstanceRepository : ISubstanceRepository
 
     public async Task<IReadOnlyList<Substance>> GetAllAsync(Boolean includeDrafts = false)
     {
-        return await mDbContext.Substances.AsNoTracking()
-           .Select(x => x.ToEntity())
-           .ToListAsync();
+        return await mDbContext.Substances.AsNoTracking().Select(x => x.ToEntity()).ToListAsync();
     }
 
     public async Task<Substance?> GetOrDefaultAsync(String id)
     {
-        var dbo = await mDbContext.Substances.AsNoTracking()
-           .SingleOrDefaultAsync(x => x.Id == id);
+        var dbo = await mDbContext.Substances.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
         return dbo?.ToEntity();
     }
@@ -41,7 +39,9 @@ internal sealed class DbSubstanceRepository : ISubstanceRepository
         var dbo = await mDbContext.Substances.SingleOrDefaultAsync(x => x.Id == id);
 
         if (dbo is null)
+        {
             return false;
+        }
 
         mDbContext.Substances.Remove(dbo);
         await mDbContext.SaveChangesAsync();
@@ -51,8 +51,7 @@ internal sealed class DbSubstanceRepository : ISubstanceRepository
 
     public async Task<Boolean> AddOrUpdateAsync(Substance item)
     {
-        var exists = await mDbContext.Substances.AsNoTracking()
-           .AnyAsync(x => x.Id == item.Id);
+        var exists = await mDbContext.Substances.AsNoTracking().AnyAsync(x => x.Id == item.Id);
 
         if (exists)
         {

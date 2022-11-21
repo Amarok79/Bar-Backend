@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using Bar.Domain;
@@ -7,6 +7,7 @@ using NUnit.Framework;
 
 
 namespace Bar.Backend.Controllers;
+
 
 [TestFixture]
 public class SubstanceExtensionsTests
@@ -20,65 +21,53 @@ public class SubstanceExtensionsTests
 
         var entity = dto.ToEntity();
 
-        Check.That(entity.Id)
-           .IsNotEmpty();
+        Check.That(entity.Id).IsNotEmpty();
 
-        Check.That(entity.Name)
-           .IsEqualTo("Grand Marnier");
+        Check.That(entity.Name).IsEqualTo("Grand Marnier");
 
-        Check.That(entity.Category)
-           .IsNull();
+        Check.That(entity.Category).IsNull();
 
-        Check.That(entity.Unit)
-           .IsNull();
+        Check.That(entity.Unit).IsNull();
     }
 
     [Test]
     public void ToEntity_Id_Name()
     {
         var dto = new SubstanceDto {
-            Id   = "KEY",
+            Id = "KEY",
             Name = "Grand Marnier",
         };
 
         var entity = dto.ToEntity();
 
-        Check.That(entity.Id)
-           .IsEqualTo("KEY");
+        Check.That(entity.Id).IsEqualTo("KEY");
 
-        Check.That(entity.Name)
-           .IsEqualTo("Grand Marnier");
+        Check.That(entity.Name).IsEqualTo("Grand Marnier");
 
-        Check.That(entity.Category)
-           .IsNull();
+        Check.That(entity.Category).IsNull();
 
-        Check.That(entity.Unit)
-           .IsNull();
+        Check.That(entity.Unit).IsNull();
     }
 
     [Test]
     public void ToEntity_Id_Name_Category_Unit()
     {
         var dto = new SubstanceDto {
-            Id       = "KEY",
-            Name     = "Grand Marnier",
+            Id = "KEY",
+            Name = "Grand Marnier",
             Category = "Liqueurs",
-            Unit     = "cl",
+            Unit = "cl",
         };
 
         var entity = dto.ToEntity();
 
-        Check.That(entity.Id)
-           .IsEqualTo("KEY");
+        Check.That(entity.Id).IsEqualTo("KEY");
 
-        Check.That(entity.Name)
-           .IsEqualTo("Grand Marnier");
+        Check.That(entity.Name).IsEqualTo("Grand Marnier");
 
-        Check.That(entity.Category)
-           .IsEqualTo("Liqueurs");
+        Check.That(entity.Category).IsEqualTo("Liqueurs");
 
-        Check.That(entity.Unit)
-           .IsEqualTo("cl");
+        Check.That(entity.Unit).IsEqualTo("cl");
     }
 
 
@@ -87,21 +76,17 @@ public class SubstanceExtensionsTests
     {
         var entity = new Substance("KEY", "Grand Marnier") {
             Category = "Liqueurs",
-            Unit     = "cl",
+            Unit = "cl",
         };
 
         var dto = entity.ToDto();
 
-        Check.That(dto.Id)
-           .IsEqualTo("KEY");
+        Check.That(dto.Id).IsEqualTo("KEY");
 
-        Check.That(dto.Name)
-           .IsEqualTo("Grand Marnier");
+        Check.That(dto.Name).IsEqualTo("Grand Marnier");
 
-        Check.That(dto.Category)
-           .IsEqualTo("Liqueurs");
+        Check.That(dto.Category).IsEqualTo("Liqueurs");
 
-        Check.That(dto.Unit)
-           .IsEqualTo("cl");
+        Check.That(dto.Unit).IsEqualTo("cl");
     }
 }

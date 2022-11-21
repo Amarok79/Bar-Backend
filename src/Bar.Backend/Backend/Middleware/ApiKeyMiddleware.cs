@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using System.Net;
@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 
 namespace Bar.Backend.Middleware;
+
 
 internal sealed class ApiKeyMiddleware
 {
@@ -24,12 +25,14 @@ internal sealed class ApiKeyMiddleware
     public Task InvokeAsync(HttpContext httpContext)
     {
         var expectedApiKey = getApiKeySetting();
-        var actualApiKey   = getApiKeyHeader();
+        var actualApiKey = getApiKeyHeader();
 
         if (String.Equals(actualApiKey, expectedApiKey))
+        {
             return mNext(httpContext);
+        }
 
-        httpContext.Response.StatusCode = (Int32) HttpStatusCode.Unauthorized;
+        httpContext.Response.StatusCode = (Int32)HttpStatusCode.Unauthorized;
 
         return Task.CompletedTask;
 
@@ -37,7 +40,9 @@ internal sealed class ApiKeyMiddleware
         String? getApiKeyHeader()
         {
             if (httpContext.Request.Headers.TryGetValue("Api-Key", out var apiKey))
+            {
                 return apiKey;
+            }
 
             return null;
         }

@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using Bar.Domain;
@@ -7,6 +7,7 @@ using NUnit.Framework;
 
 
 namespace Bar.Backend.Controllers;
+
 
 [TestFixture]
 public class RumExtensionsTests
@@ -20,17 +21,13 @@ public class RumExtensionsTests
 
         var entity = dto.ToEntity();
 
-        Check.That(entity.Id)
-           .IsNotEqualTo(Guid.Empty);
+        Check.That(entity.Id).IsNotEqualTo(Guid.Empty);
 
-        Check.That(entity.Name)
-           .IsEqualTo("Clément Rhum Blanc");
+        Check.That(entity.Name).IsEqualTo("Clément Rhum Blanc");
 
-        Check.That(entity.Teaser)
-           .IsEmpty();
+        Check.That(entity.Teaser).IsEmpty();
 
-        Check.That(entity.Images)
-           .IsEmpty();
+        Check.That(entity.Images).IsEmpty();
     }
 
     [Test]
@@ -39,23 +36,19 @@ public class RumExtensionsTests
         var id = Guid.NewGuid();
 
         var dto = new RumDto {
-            Id   = id,
+            Id = id,
             Name = "Clément Rhum Blanc",
         };
 
         var entity = dto.ToEntity();
 
-        Check.That(entity.Id)
-           .IsEqualTo(id);
+        Check.That(entity.Id).IsEqualTo(id);
 
-        Check.That(entity.Name)
-           .IsEqualTo("Clément Rhum Blanc");
+        Check.That(entity.Name).IsEqualTo("Clément Rhum Blanc");
 
-        Check.That(entity.Teaser)
-           .IsEmpty();
+        Check.That(entity.Teaser).IsEmpty();
 
-        Check.That(entity.Images)
-           .IsEmpty();
+        Check.That(entity.Images).IsEmpty();
     }
 
     [Test]
@@ -64,37 +57,25 @@ public class RumExtensionsTests
         var id = Guid.NewGuid();
 
         var dto = new RumDto {
-            Id     = id,
-            Name   = "Clément Rhum Blanc",
+            Id = id,
+            Name = "Clément Rhum Blanc",
             Teaser = "Martinique",
             Images = new[] { "KRO01084.jpg", "KRO00410.jpg" },
         };
 
         var entity = dto.ToEntity();
 
-        Check.That(entity.Id)
-           .IsEqualTo(id);
+        Check.That(entity.Id).IsEqualTo(id);
 
-        Check.That(entity.Name)
-           .IsEqualTo("Clément Rhum Blanc");
+        Check.That(entity.Name).IsEqualTo("Clément Rhum Blanc");
 
-        Check.That(entity.Teaser)
-           .IsEqualTo("Martinique");
+        Check.That(entity.Teaser).IsEqualTo("Martinique");
 
-        Check.That(entity.Images)
-           .HasSize(2);
+        Check.That(entity.Images).HasSize(2);
 
-        Check.That(
-                entity.Images[0]
-                   .FileName
-            )
-           .IsEqualTo("KRO01084.jpg");
+        Check.That(entity.Images[0].FileName).IsEqualTo("KRO01084.jpg");
 
-        Check.That(
-                entity.Images[1]
-                   .FileName
-            )
-           .IsEqualTo("KRO00410.jpg");
+        Check.That(entity.Images[1].FileName).IsEqualTo("KRO00410.jpg");
     }
 
 
@@ -110,16 +91,12 @@ public class RumExtensionsTests
 
         var dto = entity.ToDto();
 
-        Check.That(dto.Id)
-           .IsEqualTo(id);
+        Check.That(dto.Id).IsEqualTo(id);
 
-        Check.That(dto.Name)
-           .IsEqualTo("Clément Rhum Blanc");
+        Check.That(dto.Name).IsEqualTo("Clément Rhum Blanc");
 
-        Check.That(dto.Teaser)
-           .IsEqualTo("Martinique");
+        Check.That(dto.Teaser).IsEqualTo("Martinique");
 
-        Check.That(dto.Images)
-           .ContainsExactly("KRO01084.jpg", "KRO00410.jpg");
+        Check.That(dto.Images).ContainsExactly("KRO01084.jpg", "KRO00410.jpg");
     }
 }

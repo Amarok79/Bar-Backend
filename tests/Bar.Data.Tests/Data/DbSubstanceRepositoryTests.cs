@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using System.Threading.Tasks;
@@ -10,6 +10,7 @@ using NUnit.Framework;
 
 namespace Bar.Data;
 
+
 [TestFixture]
 public class DbSubstanceRepositoryTests
 {
@@ -20,10 +21,7 @@ public class DbSubstanceRepositoryTests
     [SetUp]
     public void Setup()
     {
-        var options = new DbContextOptionsBuilder<BarDbContext>().UseInMemoryDatabase(
-                Guid.NewGuid()
-                   .ToString()
-            )
+        var options = new DbContextOptionsBuilder<BarDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString())
            .Options;
 
         mContext = new BarDbContext(options);
@@ -44,16 +42,16 @@ public class DbSubstanceRepositoryTests
     {
         mContext.Substances.Add(
             new SubstanceDbo {
-                Id       = "AAA",
-                Name     = "Grand Marnier",
+                Id = "AAA",
+                Name = "Grand Marnier",
                 Category = "Liqueurs",
-                Unit     = "cl",
+                Unit = "cl",
             }
         );
 
         mContext.Substances.Add(
             new SubstanceDbo {
-                Id   = "BBB",
+                Id = "BBB",
                 Name = "Limes",
             }
         );
@@ -69,8 +67,7 @@ public class DbSubstanceRepositoryTests
     {
         var result = await mRepository.GetAllAsync();
 
-        Check.That(result)
-           .IsEmpty();
+        Check.That(result).IsEmpty();
     }
 
     [Test]
@@ -80,56 +77,23 @@ public class DbSubstanceRepositoryTests
 
         var result = await mRepository.GetAllAsync();
 
-        Check.That(result)
-           .HasSize(2);
+        Check.That(result).HasSize(2);
 
-        Check.That(
-                result[0]
-                   .Id
-            )
-           .IsEqualTo("AAA");
+        Check.That(result[0].Id).IsEqualTo("AAA");
 
-        Check.That(
-                result[0]
-                   .Name
-            )
-           .IsEqualTo("Grand Marnier");
+        Check.That(result[0].Name).IsEqualTo("Grand Marnier");
 
-        Check.That(
-                result[0]
-                   .Category
-            )
-           .IsEqualTo("Liqueurs");
+        Check.That(result[0].Category).IsEqualTo("Liqueurs");
 
-        Check.That(
-                result[0]
-                   .Unit
-            )
-           .IsEqualTo("cl");
+        Check.That(result[0].Unit).IsEqualTo("cl");
 
-        Check.That(
-                result[1]
-                   .Id
-            )
-           .IsEqualTo("BBB");
+        Check.That(result[1].Id).IsEqualTo("BBB");
 
-        Check.That(
-                result[1]
-                   .Name
-            )
-           .IsEqualTo("Limes");
+        Check.That(result[1].Name).IsEqualTo("Limes");
 
-        Check.That(
-                result[1]
-                   .Category
-            )
-           .IsNull();
+        Check.That(result[1].Category).IsNull();
 
-        Check.That(
-                result[1]
-                   .Unit
-            )
-           .IsNull();
+        Check.That(result[1].Unit).IsNull();
     }
 
 
@@ -138,8 +102,7 @@ public class DbSubstanceRepositoryTests
     {
         var result = await mRepository.GetOrDefaultAsync("AAA");
 
-        Check.That(result)
-           .IsNull();
+        Check.That(result).IsNull();
     }
 
     [Test]
@@ -149,20 +112,15 @@ public class DbSubstanceRepositoryTests
 
         var result = await mRepository.GetOrDefaultAsync("AAA");
 
-        Check.That(result)
-           .IsNotNull();
+        Check.That(result).IsNotNull();
 
-        Check.That(result.Id)
-           .IsEqualTo("AAA");
+        Check.That(result.Id).IsEqualTo("AAA");
 
-        Check.That(result.Name)
-           .IsEqualTo("Grand Marnier");
+        Check.That(result.Name).IsEqualTo("Grand Marnier");
 
-        Check.That(result.Category)
-           .IsEqualTo("Liqueurs");
+        Check.That(result.Category).IsEqualTo("Liqueurs");
 
-        Check.That(result.Unit)
-           .IsEqualTo("cl");
+        Check.That(result.Unit).IsEqualTo("cl");
     }
 
 
@@ -171,8 +129,7 @@ public class DbSubstanceRepositoryTests
     {
         var result = await mRepository.DeleteAsync("AAA");
 
-        Check.That(result)
-           .IsFalse();
+        Check.That(result).IsFalse();
     }
 
     [Test]
@@ -182,13 +139,11 @@ public class DbSubstanceRepositoryTests
 
         var result = await mRepository.DeleteAsync("AAA");
 
-        Check.That(result)
-           .IsTrue();
+        Check.That(result).IsTrue();
 
         result = await mRepository.DeleteAsync("AAA");
 
-        Check.That(result)
-           .IsFalse();
+        Check.That(result).IsFalse();
     }
 
 
@@ -197,30 +152,24 @@ public class DbSubstanceRepositoryTests
     {
         var entity = new Substance("AAA", "Grand Marnier-2") {
             Category = "Liqueurs-2",
-            Unit     = "ml",
+            Unit = "ml",
         };
 
         var result = await mRepository.AddOrUpdateAsync(entity);
 
-        Check.That(result)
-           .IsTrue();
+        Check.That(result).IsTrue();
 
         var item = await mRepository.GetOrDefaultAsync("AAA");
 
-        Check.That(item)
-           .IsNotNull();
+        Check.That(item).IsNotNull();
 
-        Check.That(item.Id)
-           .IsEqualTo("AAA");
+        Check.That(item.Id).IsEqualTo("AAA");
 
-        Check.That(item.Name)
-           .IsEqualTo("Grand Marnier-2");
+        Check.That(item.Name).IsEqualTo("Grand Marnier-2");
 
-        Check.That(item.Category)
-           .IsEqualTo("Liqueurs-2");
+        Check.That(item.Category).IsEqualTo("Liqueurs-2");
 
-        Check.That(item.Unit)
-           .IsEqualTo("ml");
+        Check.That(item.Unit).IsEqualTo("ml");
     }
 
     [Test]
@@ -230,29 +179,23 @@ public class DbSubstanceRepositoryTests
 
         var entity = new Substance("AAA", "Grand Marnier-2") {
             Category = "Liqueurs-2",
-            Unit     = "ml",
+            Unit = "ml",
         };
 
         var result = await mRepository.AddOrUpdateAsync(entity);
 
-        Check.That(result)
-           .IsFalse();
+        Check.That(result).IsFalse();
 
         var item = await mRepository.GetOrDefaultAsync("AAA");
 
-        Check.That(item)
-           .IsNotNull();
+        Check.That(item).IsNotNull();
 
-        Check.That(item.Id)
-           .IsEqualTo("AAA");
+        Check.That(item.Id).IsEqualTo("AAA");
 
-        Check.That(item.Name)
-           .IsEqualTo("Grand Marnier-2");
+        Check.That(item.Name).IsEqualTo("Grand Marnier-2");
 
-        Check.That(item.Category)
-           .IsEqualTo("Liqueurs-2");
+        Check.That(item.Category).IsEqualTo("Liqueurs-2");
 
-        Check.That(item.Unit)
-           .IsEqualTo("ml");
+        Check.That(item.Unit).IsEqualTo("ml");
     }
 }

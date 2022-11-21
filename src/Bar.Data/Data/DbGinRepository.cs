@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 namespace Bar.Data;
+
 
 internal sealed class DbGinRepository : IGinRepository
 {
@@ -31,8 +32,7 @@ internal sealed class DbGinRepository : IGinRepository
 
     public async Task<Gin?> GetOrDefaultAsync(Guid id)
     {
-        var dbo = await mDbContext.Gins.AsNoTracking()
-           .SingleOrDefaultAsync(x => x.Id == id);
+        var dbo = await mDbContext.Gins.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
         return dbo?.ToEntity();
     }
@@ -42,7 +42,9 @@ internal sealed class DbGinRepository : IGinRepository
         var dbo = await mDbContext.Gins.SingleOrDefaultAsync(x => x.Id == id);
 
         if (dbo is null)
+        {
             return false;
+        }
 
         mDbContext.Gins.Remove(dbo);
         await mDbContext.SaveChangesAsync();
@@ -52,8 +54,7 @@ internal sealed class DbGinRepository : IGinRepository
 
     public async Task<Boolean> AddOrUpdateAsync(Gin item)
     {
-        var exists = await mDbContext.Gins.AsNoTracking()
-           .AnyAsync(x => x.Id == item.Id);
+        var exists = await mDbContext.Gins.AsNoTracking().AnyAsync(x => x.Id == item.Id);
 
         if (exists)
         {

@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using System.Collections.Generic;
@@ -8,13 +8,14 @@ using Bar.Domain;
 
 namespace Bar.Data;
 
+
 internal static class RumExtensions
 {
     public static RumDbo ToDbo(this Rum entity)
     {
         return new RumDbo {
-            Id     = entity.Id,
-            Name   = entity.Name,
+            Id = entity.Id,
+            Name = entity.Name,
             Teaser = entity.Teaser,
             Images = String.Join(';', entity.Images.Select(x => x.FileName)),
         };
@@ -32,9 +33,7 @@ internal static class RumExtensions
         {
             return dbo.Images == null
                 ? Array.Empty<Image>()
-                : dbo.Images.Split(';', StringSplitOptions.RemoveEmptyEntries)
-                   .Select(x => new Image(x))
-                   .ToList();
+                : dbo.Images.Split(';', StringSplitOptions.RemoveEmptyEntries).Select(x => new Image(x)).ToList();
         }
     }
 }

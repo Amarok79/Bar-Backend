@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 
 namespace Bar.Backend.Controllers;
+
 
 [ApiController, Route("api/substances")]
 public sealed class SubstanceController : ControllerBase
@@ -27,8 +28,7 @@ public sealed class SubstanceController : ControllerBase
     {
         var items = await mRepository.GetAllAsync();
 
-        var dto = items.Select(x => x.ToDto())
-           .OrderBy(x => x.Name);
+        var dto = items.Select(x => x.ToDto()).OrderBy(x => x.Name);
 
         return Ok(dto);
     }
@@ -39,7 +39,9 @@ public sealed class SubstanceController : ControllerBase
         var item = await mRepository.GetOrDefaultAsync(id);
 
         if (item is null)
+        {
             return NotFound();
+        }
 
         return Ok(item.ToDto());
     }

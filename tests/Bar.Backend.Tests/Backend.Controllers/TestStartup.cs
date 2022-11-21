@@ -1,4 +1,4 @@
-// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using Bar.Backend.Middleware;
@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Bar.Backend.Controllers;
 
+
 public sealed class TestStartup
 {
     private readonly String mName;
@@ -22,15 +23,14 @@ public sealed class TestStartup
 
     public TestStartup(String name, IConfiguration configuration)
     {
-        mName         = name;
+        mName = name;
         Configuration = configuration;
     }
 
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddControllers()
-           .AddApplicationPart(typeof(RumController).Assembly);
+        services.AddControllers().AddApplicationPart(typeof(RumController).Assembly);
 
         services.AddDbContext<BarDbContext>(options => options.UseInMemoryDatabase(mName));
 
