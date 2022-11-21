@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<RootNamespace>Bar</RootNamespace>
 		<ApplicationInsightsResourceId>/subscriptions/41707fe0-4695-4325-9518-8324cebdb7f4/resourceGroups/cachaca/providers/microsoft.insights/components/Bar-Backend</ApplicationInsightsResourceId>
