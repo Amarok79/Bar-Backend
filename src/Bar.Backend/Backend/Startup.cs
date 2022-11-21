@@ -1,4 +1,4 @@
-// Copyright (c) 2021, Olaf Kober <olaf.kober@outlook.com>
+// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using System;
 using Bar.Backend.Middleware;
@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 
 
 namespace Bar.Backend;
+
 
 public sealed class Startup
 {
@@ -25,7 +26,9 @@ public sealed class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
+        services.AddApplicationInsightsTelemetry(
+            options => options.ConnectionString = Configuration["APPINSIGHTS_CONNECTIONSTRING"]
+        );
 
         services.AddControllers();
 
@@ -37,7 +40,9 @@ public sealed class Startup
         databaseService.Migrate();
 
         if (env.IsDevelopment())
+        {
             app.UseDeveloperExceptionPage();
+        }
 
         app.UseMiddleware<ApiKeyMiddleware>();
 
