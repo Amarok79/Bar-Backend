@@ -27,7 +27,7 @@ public sealed class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddApplicationInsightsTelemetry(
-            options => options.ConnectionString = Configuration["APPINSIGHTS_CONNECTIONSTRING"]
+            options => options.ConnectionString = Configuration["ApplicationInsights:ConnectionString"]
         );
 
         services.AddControllers();
