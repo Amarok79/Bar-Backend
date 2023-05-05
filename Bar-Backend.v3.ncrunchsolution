@@ -1,6 +1,11 @@
 ﻿<SolutionConfiguration>
-    <Settings>
-        <AllowParallelTestExecution>True</AllowParallelTestExecution>
-        <SolutionConfigured>True</SolutionConfigured>
-    </Settings>
+  <Settings>
+    <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <MetricsExclusionList>
+      <Value>tests\Bar.Domain.Tests\Bar.Domain.Tests.csproj</Value>
+      <Value>tests\Bar.Data.Tests\Bar.Data.Tests.csproj</Value>
+      <Value>tests\Bar.Backend.Tests\Bar.Backend.Tests.csproj</Value>
+    </MetricsExclusionList>
+    <SolutionConfigured>True</SolutionConfigured>
+  </Settings>
 </SolutionConfiguration>
