@@ -16,28 +16,36 @@ internal sealed class DbGinRepository : IGinRepository
     private readonly BarDbContext mDbContext;
 
 
-    public DbGinRepository(BarDbContext dbContext)
+    public DbGinRepository(
+        BarDbContext dbContext
+    )
     {
         mDbContext = dbContext;
     }
 
 
-    public async Task<IReadOnlyList<Gin>> GetAllAsync(Boolean includeDrafts = false)
+    public async Task<IReadOnlyList<Gin>> GetAllAsync(
+        Boolean includeDrafts = false
+    )
     {
         return await mDbContext.Gins.AsNoTracking()
-           .Where(x => includeDrafts || !x.IsDraft)
-           .Select(x => x.ToEntity())
-           .ToListAsync();
+            .Where(x => includeDrafts || !x.IsDraft)
+            .Select(x => x.ToEntity())
+            .ToListAsync();
     }
 
-    public async Task<Gin?> GetOrDefaultAsync(Guid id)
+    public async Task<Gin?> GetOrDefaultAsync(
+        Guid id
+    )
     {
         var dbo = await mDbContext.Gins.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
         return dbo?.ToEntity();
     }
 
-    public async Task<Boolean> DeleteAsync(Guid id)
+    public async Task<Boolean> DeleteAsync(
+        Guid id
+    )
     {
         var dbo = await mDbContext.Gins.SingleOrDefaultAsync(x => x.Id == id);
 
@@ -52,7 +60,9 @@ internal sealed class DbGinRepository : IGinRepository
         return true;
     }
 
-    public async Task<Boolean> AddOrUpdateAsync(Gin item)
+    public async Task<Boolean> AddOrUpdateAsync(
+        Gin item
+    )
     {
         var exists = await mDbContext.Gins.AsNoTracking().AnyAsync(x => x.Id == item.Id);
 

@@ -16,13 +16,17 @@ internal sealed class ApiKeyMiddleware
     private readonly RequestDelegate mNext;
 
 
-    public ApiKeyMiddleware(RequestDelegate next)
+    public ApiKeyMiddleware(
+        RequestDelegate next
+    )
     {
         mNext = next;
     }
 
 
-    public Task InvokeAsync(HttpContext httpContext)
+    public Task InvokeAsync(
+        HttpContext httpContext
+    )
     {
         var expectedApiKey = getApiKeySetting();
         var actualApiKey = getApiKeyHeader();

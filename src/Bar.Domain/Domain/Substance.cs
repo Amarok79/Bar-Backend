@@ -16,7 +16,10 @@ namespace Bar.Domain;
 /// <param name="Name">
 ///     The name of the Substrate, e.g. "Grand Marnier".
 /// </param>
-public sealed record Substance(String Id, String Name)
+public sealed record Substance(
+    String Id,
+    String Name
+)
 {
     /// <summary>
     ///     The name of the category the Substrate belongs to, e.g. "Liqueurs".

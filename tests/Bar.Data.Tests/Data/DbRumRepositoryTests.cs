@@ -22,7 +22,7 @@ public class DbRumRepositoryTests
     public void Setup()
     {
         var options = new DbContextOptionsBuilder<BarDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString())
-           .Options;
+            .Options;
 
         mContext = new BarDbContext(options);
         mContext.Database.EnsureDeleted();

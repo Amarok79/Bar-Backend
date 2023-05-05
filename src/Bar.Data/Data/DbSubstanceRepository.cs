@@ -16,25 +16,33 @@ internal sealed class DbSubstanceRepository : ISubstanceRepository
     private readonly BarDbContext mDbContext;
 
 
-    public DbSubstanceRepository(BarDbContext dbContext)
+    public DbSubstanceRepository(
+        BarDbContext dbContext
+    )
     {
         mDbContext = dbContext;
     }
 
 
-    public async Task<IReadOnlyList<Substance>> GetAllAsync(Boolean includeDrafts = false)
+    public async Task<IReadOnlyList<Substance>> GetAllAsync(
+        Boolean includeDrafts = false
+    )
     {
         return await mDbContext.Substances.AsNoTracking().Select(x => x.ToEntity()).ToListAsync();
     }
 
-    public async Task<Substance?> GetOrDefaultAsync(String id)
+    public async Task<Substance?> GetOrDefaultAsync(
+        String id
+    )
     {
         var dbo = await mDbContext.Substances.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
         return dbo?.ToEntity();
     }
 
-    public async Task<Boolean> DeleteAsync(String id)
+    public async Task<Boolean> DeleteAsync(
+        String id
+    )
     {
         var dbo = await mDbContext.Substances.SingleOrDefaultAsync(x => x.Id == id);
 
@@ -49,7 +57,9 @@ internal sealed class DbSubstanceRepository : ISubstanceRepository
         return true;
     }
 
-    public async Task<Boolean> AddOrUpdateAsync(Substance item)
+    public async Task<Boolean> AddOrUpdateAsync(
+        Substance item
+    )
     {
         var exists = await mDbContext.Substances.AsNoTracking().AnyAsync(x => x.Id == item.Id);
 

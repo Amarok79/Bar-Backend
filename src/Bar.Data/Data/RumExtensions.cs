@@ -11,7 +11,9 @@ namespace Bar.Data;
 
 internal static class RumExtensions
 {
-    public static RumDbo ToDbo(this Rum entity)
+    public static RumDbo ToDbo(
+        this Rum entity
+    )
     {
         return new RumDbo {
             Id = entity.Id,
@@ -21,7 +23,9 @@ internal static class RumExtensions
         };
     }
 
-    public static Rum ToEntity(this RumDbo dbo)
+    public static Rum ToEntity(
+        this RumDbo dbo
+    )
     {
         return new Rum(dbo.Id, dbo.Name) {
             Teaser = dbo.Teaser ?? String.Empty,

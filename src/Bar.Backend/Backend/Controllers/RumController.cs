@@ -11,13 +11,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace Bar.Backend.Controllers;
 
 
-[ApiController, Route("api/rums")]
+[ApiController]
+[Route("api/rums")]
 public sealed class RumController : ControllerBase
 {
     private readonly IRumRepository mRepository;
 
 
-    public RumController(IRumRepository repository)
+    public RumController(
+        IRumRepository repository
+    )
     {
         mRepository = repository;
     }
@@ -34,7 +37,9 @@ public sealed class RumController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<RumDto>> GetSingle([FromRoute] Guid id)
+    public async Task<ActionResult<RumDto>> GetSingle(
+        [FromRoute] Guid id
+    )
     {
         var item = await mRepository.GetOrDefaultAsync(id);
 
@@ -47,7 +52,9 @@ public sealed class RumController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteSingle([FromRoute] Guid id)
+    public async Task<IActionResult> DeleteSingle(
+        [FromRoute] Guid id
+    )
     {
         await mRepository.DeleteAsync(id);
 
@@ -55,7 +62,10 @@ public sealed class RumController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<RumDto>> CreateOrUpdateSingle([FromRoute] Guid id, [FromBody] RumDto dto)
+    public async Task<ActionResult<RumDto>> CreateOrUpdateSingle(
+        [FromRoute] Guid id,
+        [FromBody] RumDto dto
+    )
     {
         dto.Id = id;
 

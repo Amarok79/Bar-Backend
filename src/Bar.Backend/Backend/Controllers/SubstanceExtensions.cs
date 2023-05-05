@@ -10,7 +10,9 @@ namespace Bar.Backend.Controllers;
 
 public static class SubstanceExtensions
 {
-    public static Substance ToEntity(this SubstanceDto dto)
+    public static Substance ToEntity(
+        this SubstanceDto dto
+    )
     {
         dto.Id ??= Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
@@ -20,7 +22,9 @@ public static class SubstanceExtensions
         };
     }
 
-    public static SubstanceDto ToDto(this Substance entity)
+    public static SubstanceDto ToDto(
+        this Substance entity
+    )
     {
         return new SubstanceDto {
             Id = entity.Id,

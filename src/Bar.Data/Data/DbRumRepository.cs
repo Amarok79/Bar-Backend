@@ -16,25 +16,33 @@ internal sealed class DbRumRepository : IRumRepository
     private readonly BarDbContext mDbContext;
 
 
-    public DbRumRepository(BarDbContext dbContext)
+    public DbRumRepository(
+        BarDbContext dbContext
+    )
     {
         mDbContext = dbContext;
     }
 
 
-    public async Task<IReadOnlyList<Rum>> GetAllAsync(Boolean includeDrafts = false)
+    public async Task<IReadOnlyList<Rum>> GetAllAsync(
+        Boolean includeDrafts = false
+    )
     {
         return await mDbContext.Rums.AsNoTracking().Select(x => x.ToEntity()).ToListAsync();
     }
 
-    public async Task<Rum?> GetOrDefaultAsync(Guid id)
+    public async Task<Rum?> GetOrDefaultAsync(
+        Guid id
+    )
     {
         var dbo = await mDbContext.Rums.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
         return dbo?.ToEntity();
     }
 
-    public async Task<Boolean> DeleteAsync(Guid id)
+    public async Task<Boolean> DeleteAsync(
+        Guid id
+    )
     {
         var dbo = await mDbContext.Rums.SingleOrDefaultAsync(x => x.Id == id);
 
@@ -49,7 +57,9 @@ internal sealed class DbRumRepository : IRumRepository
         return true;
     }
 
-    public async Task<Boolean> AddOrUpdateAsync(Rum item)
+    public async Task<Boolean> AddOrUpdateAsync(
+        Rum item
+    )
     {
         var exists = await mDbContext.Rums.AsNoTracking().AnyAsync(x => x.Id == item.Id);
 

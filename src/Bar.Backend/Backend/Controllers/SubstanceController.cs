@@ -11,13 +11,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace Bar.Backend.Controllers;
 
 
-[ApiController, Route("api/substances")]
+[ApiController]
+[Route("api/substances")]
 public sealed class SubstanceController : ControllerBase
 {
     private readonly ISubstanceRepository mRepository;
 
 
-    public SubstanceController(ISubstanceRepository repository)
+    public SubstanceController(
+        ISubstanceRepository repository
+    )
     {
         mRepository = repository;
     }
@@ -34,7 +37,9 @@ public sealed class SubstanceController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<SubstanceDto>> GetSingle([FromRoute] String id)
+    public async Task<ActionResult<SubstanceDto>> GetSingle(
+        [FromRoute] String id
+    )
     {
         var item = await mRepository.GetOrDefaultAsync(id);
 
@@ -47,7 +52,9 @@ public sealed class SubstanceController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteSingle([FromRoute] String id)
+    public async Task<IActionResult> DeleteSingle(
+        [FromRoute] String id
+    )
     {
         await mRepository.DeleteAsync(id);
 

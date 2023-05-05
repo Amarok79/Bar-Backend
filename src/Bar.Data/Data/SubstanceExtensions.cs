@@ -1,6 +1,5 @@
 ﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
-using System;
 using Bar.Domain;
 
 
@@ -9,7 +8,9 @@ namespace Bar.Data;
 
 internal static class SubstanceExtensions
 {
-    public static SubstanceDbo ToDbo(this Substance entity)
+    public static SubstanceDbo ToDbo(
+        this Substance entity
+    )
     {
         return new SubstanceDbo {
             Id = entity.Id,
@@ -19,7 +20,9 @@ internal static class SubstanceExtensions
         };
     }
 
-    public static Substance ToEntity(this SubstanceDbo dbo)
+    public static Substance ToEntity(
+        this SubstanceDbo dbo
+    )
     {
         return new Substance(dbo.Id, dbo.Name) {
             Category = dbo.Category,

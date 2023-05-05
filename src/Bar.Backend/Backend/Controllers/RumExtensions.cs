@@ -10,7 +10,9 @@ namespace Bar.Backend.Controllers;
 
 public static class RumExtensions
 {
-    public static Rum ToEntity(this RumDto dto)
+    public static Rum ToEntity(
+        this RumDto dto
+    )
     {
         dto.Id ??= Guid.NewGuid();
 
@@ -20,7 +22,9 @@ public static class RumExtensions
         };
     }
 
-    public static RumDto ToDto(this Rum entity)
+    public static RumDto ToDto(
+        this Rum entity
+    )
     {
         return new RumDto {
             Id = entity.Id,

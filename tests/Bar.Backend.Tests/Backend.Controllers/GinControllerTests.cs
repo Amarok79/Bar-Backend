@@ -68,8 +68,8 @@ public class GinControllerTests
     private async Task _GetSingle_Returns_NotFound()
     {
         var rsp = await mClient.Request("/api/gins/6983cc47-047b-4e7c-8f17-af292ed80bd1")
-           .AllowAnyHttpStatus()
-           .GetAsync();
+            .AllowAnyHttpStatus()
+            .GetAsync();
 
         Check.That(rsp.StatusCode).IsEqualTo(404);
     }
@@ -77,7 +77,7 @@ public class GinControllerTests
     private async Task _CreateItem_1()
     {
         var rsp = await mClient.Request("/api/gins/6983cc47-047b-4e7c-8f17-af292ed80bd1")
-           .PutJsonAsync(
+            .PutJsonAsync(
                 new {
                     Name = "The Stin Dry Gin",
                     Teaser = "Styrian Dry Gin",
@@ -103,7 +103,7 @@ public class GinControllerTests
     private async Task _UpdateItem_1()
     {
         var rsp = await mClient.Request("/api/gins/6983cc47-047b-4e7c-8f17-af292ed80bd1")
-           .PutJsonAsync(
+            .PutJsonAsync(
                 new {
                     Id = Guid.NewGuid(),
                     Name = "The Stin Dry Gin-2",
@@ -152,7 +152,7 @@ public class GinControllerTests
     private async Task _CreateItem_2()
     {
         var rsp = await mClient.Request("/api/gins/f942f025-7970-4990-84b7-68afba4fc341")
-           .PutJsonAsync(
+            .PutJsonAsync(
                 new {
                     Name = "Toplitz Gin",
                     IsDraft = true,

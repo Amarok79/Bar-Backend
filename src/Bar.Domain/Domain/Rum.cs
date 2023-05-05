@@ -17,7 +17,10 @@ namespace Bar.Domain;
 /// <param name="Name">
 ///     The name of the Rum, e.g. "Clément Rhum Blanc".
 /// </param>
-public sealed record Rum(Guid Id, String Name)
+public sealed record Rum(
+    Guid Id,
+    String Name
+)
 {
     /// <summary>
     ///     A teaser of the Rum, e.g. "Martinique".

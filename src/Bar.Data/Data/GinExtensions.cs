@@ -11,7 +11,9 @@ namespace Bar.Data;
 
 internal static class GinExtensions
 {
-    public static GinDbo ToDbo(this Gin entity)
+    public static GinDbo ToDbo(
+        this Gin entity
+    )
     {
         return new GinDbo {
             Id = entity.Id,
@@ -22,7 +24,9 @@ internal static class GinExtensions
         };
     }
 
-    public static Gin ToEntity(this GinDbo dbo)
+    public static Gin ToEntity(
+        this GinDbo dbo
+    )
     {
         return new Gin(dbo.Id, dbo.Name) {
             Teaser = dbo.Teaser ?? String.Empty,

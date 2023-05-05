@@ -1,6 +1,5 @@
 ﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
-using System;
 using Bar.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +17,10 @@ public static class DataServiceCollectionExtensions
     /// <summary>
     ///     Adds the Rum and Gin repositories.
     /// </summary>
-    public static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddRepositories(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
     {
         services.AddDbContext<BarDbContext>(x => x.UseSqlServer(configuration.GetConnectionString("Database")));
         services.AddScoped<IGinRepository, DbGinRepository>();

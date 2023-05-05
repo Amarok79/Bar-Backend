@@ -1,6 +1,5 @@
 ﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
-using System;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -12,7 +11,9 @@ internal sealed class DatabaseServiceImpl : IDatabaseService
     private readonly BarDbContext mDataContext;
 
 
-    public DatabaseServiceImpl(BarDbContext dataContext)
+    public DatabaseServiceImpl(
+        BarDbContext dataContext
+    )
     {
         mDataContext = dataContext;
     }

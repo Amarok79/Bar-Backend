@@ -16,7 +16,9 @@ public interface IRepository<in TId, TItem>
     /// <summary>
     ///     Gets all items.
     /// </summary>
-    Task<IReadOnlyList<TItem>> GetAllAsync(Boolean includeDrafts = false);
+    Task<IReadOnlyList<TItem>> GetAllAsync(
+        Boolean includeDrafts = false
+    );
 
     /// <summary>
     ///     Gets the item with the given Id, or null if not existing.
@@ -25,7 +27,9 @@ public interface IRepository<in TId, TItem>
     /// <param name="id">
     ///     The Id of the item to return.
     /// </param>
-    Task<TItem?> GetOrDefaultAsync(TId id);
+    Task<TItem?> GetOrDefaultAsync(
+        TId id
+    );
 
     /// <summary>
     ///     Deletes the item with the given Id.
@@ -37,7 +41,9 @@ public interface IRepository<in TId, TItem>
     /// <returns>
     ///     True, if the item has been deleted; False, if not existing.
     /// </returns>
-    Task<Boolean> DeleteAsync(TId id);
+    Task<Boolean> DeleteAsync(
+        TId id
+    );
 
     /// <summary>
     ///     Adds a new item or updates an existing one.
@@ -49,5 +55,7 @@ public interface IRepository<in TId, TItem>
     /// <returns>
     ///     True, if a new item has been added, otherwise False if an existing item has been updated.
     /// </returns>
-    Task<Boolean> AddOrUpdateAsync(TItem item);
+    Task<Boolean> AddOrUpdateAsync(
+        TItem item
+    );
 }

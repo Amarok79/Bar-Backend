@@ -1,6 +1,5 @@
-// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
+// Copyright (c) 2023, Olaf Kober <olaf.kober@outlook.com>
 
-using System;
 using Bar.Backend.Middleware;
 using Bar.Data;
 using Microsoft.AspNetCore.Builder;
@@ -18,13 +17,17 @@ public sealed class Startup
     public IConfiguration Configuration { get; }
 
 
-    public Startup(IConfiguration configuration)
+    public Startup(
+        IConfiguration configuration
+    )
     {
         Configuration = configuration;
     }
 
 
-    public void ConfigureServices(IServiceCollection services)
+    public void ConfigureServices(
+        IServiceCollection services
+    )
     {
         services.AddApplicationInsightsTelemetry(
             options => options.ConnectionString = Configuration["ApplicationInsights:ConnectionString"]
@@ -35,7 +38,11 @@ public sealed class Startup
         services.AddRepositories(Configuration);
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDatabaseService databaseService)
+    public void Configure(
+        IApplicationBuilder app,
+        IWebHostEnvironment env,
+        IDatabaseService databaseService
+    )
     {
         databaseService.Migrate();
 

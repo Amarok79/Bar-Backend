@@ -11,20 +11,25 @@ using Microsoft.AspNetCore.Mvc;
 namespace Bar.Backend.Controllers;
 
 
-[ApiController, Route("api/gins")]
+[ApiController]
+[Route("api/gins")]
 public sealed class GinController : ControllerBase
 {
     private readonly IGinRepository mRepository;
 
 
-    public GinController(IGinRepository repository)
+    public GinController(
+        IGinRepository repository
+    )
     {
         mRepository = repository;
     }
 
 
     [HttpGet]
-    public async Task<ActionResult<IList<GinDto>>> GetAll([FromQuery] Boolean includeDrafts = false)
+    public async Task<ActionResult<IList<GinDto>>> GetAll(
+        [FromQuery] Boolean includeDrafts = false
+    )
     {
         var items = await mRepository.GetAllAsync(includeDrafts);
 
@@ -34,7 +39,9 @@ public sealed class GinController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<GinDto>> GetSingle([FromRoute] Guid id)
+    public async Task<ActionResult<GinDto>> GetSingle(
+        [FromRoute] Guid id
+    )
     {
         var item = await mRepository.GetOrDefaultAsync(id);
 
@@ -47,7 +54,9 @@ public sealed class GinController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteSingle([FromRoute] Guid id)
+    public async Task<IActionResult> DeleteSingle(
+        [FromRoute] Guid id
+    )
     {
         await mRepository.DeleteAsync(id);
 
@@ -55,7 +64,10 @@ public sealed class GinController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<GinDto>> CreateOrUpdateSingle([FromRoute] Guid id, [FromBody] GinDto dto)
+    public async Task<ActionResult<GinDto>> CreateOrUpdateSingle(
+        [FromRoute] Guid id,
+        [FromBody] GinDto dto
+    )
     {
         dto.Id = id;
 

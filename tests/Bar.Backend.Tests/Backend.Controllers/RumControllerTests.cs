@@ -67,8 +67,8 @@ public class RumControllerTests
     private async Task _GetSingle_Returns_NotFound()
     {
         var rsp = await mClient.Request("/api/rums/6983cc47-047b-4e7c-8f17-af292ed80bd1")
-           .AllowAnyHttpStatus()
-           .GetAsync();
+            .AllowAnyHttpStatus()
+            .GetAsync();
 
         Check.That(rsp.StatusCode).IsEqualTo(404);
     }
@@ -76,7 +76,7 @@ public class RumControllerTests
     private async Task _CreateItem_1()
     {
         var rsp = await mClient.Request("/api/rums/6983cc47-047b-4e7c-8f17-af292ed80bd1")
-           .PutJsonAsync(
+            .PutJsonAsync(
                 new {
                     Name = "Clément Rhum Blanc",
                     Teaser = "Martinique",
@@ -100,7 +100,7 @@ public class RumControllerTests
     private async Task _UpdateItem_1()
     {
         var rsp = await mClient.Request("/api/rums/6983cc47-047b-4e7c-8f17-af292ed80bd1")
-           .PutJsonAsync(
+            .PutJsonAsync(
                 new {
                     Id = Guid.NewGuid(),
                     Name = "Clément Rhum Blanc-2",
@@ -144,7 +144,7 @@ public class RumControllerTests
     private async Task _CreateItem_2()
     {
         var rsp = await mClient.Request("/api/rums/f942f025-7970-4990-84b7-68afba4fc341")
-           .PutJsonAsync(
+            .PutJsonAsync(
                 new {
                     Name = "J. Wray Silver",
                 }

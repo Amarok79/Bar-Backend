@@ -21,14 +21,19 @@ public sealed class TestStartup
     public IConfiguration Configuration { get; }
 
 
-    public TestStartup(String name, IConfiguration configuration)
+    public TestStartup(
+        String name,
+        IConfiguration configuration
+    )
     {
         mName = name;
         Configuration = configuration;
     }
 
 
-    public void ConfigureServices(IServiceCollection services)
+    public void ConfigureServices(
+        IServiceCollection services
+    )
     {
         services.AddControllers().AddApplicationPart(typeof(RumController).Assembly);
 
@@ -39,7 +44,10 @@ public sealed class TestStartup
         services.AddScoped<ISubstanceRepository, DbSubstanceRepository>();
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(
+        IApplicationBuilder app,
+        IWebHostEnvironment env
+    )
     {
         app.UseDeveloperExceptionPage();
 

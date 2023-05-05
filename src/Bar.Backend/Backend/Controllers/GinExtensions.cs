@@ -10,7 +10,9 @@ namespace Bar.Backend.Controllers;
 
 public static class GinExtensions
 {
-    public static Gin ToEntity(this GinDto dto)
+    public static Gin ToEntity(
+        this GinDto dto
+    )
     {
         dto.Id ??= Guid.NewGuid();
 
@@ -21,7 +23,9 @@ public static class GinExtensions
         };
     }
 
-    public static GinDto ToDto(this Gin entity)
+    public static GinDto ToDto(
+        this Gin entity
+    )
     {
         return new GinDto {
             Id = entity.Id,

@@ -74,13 +74,13 @@ public class SubstanceControllerTests
     private async Task _CreateItem_1()
     {
         var rsp = await mClient.Request("/api/substances/AAA")
-       .PutJsonAsync(
-            new {
-                Name = "Grand Marnier",
-                Category = "Liqueurs",
-                Unit = "cl",
-            }
-        );
+            .PutJsonAsync(
+                new {
+                    Name = "Grand Marnier",
+                    Category = "Liqueurs",
+                    Unit = "cl",
+                }
+            );
 
         var dto = await rsp.GetJsonAsync<SubstanceDto>();
 
@@ -98,14 +98,14 @@ public class SubstanceControllerTests
     private async Task _UpdateItem_1()
     {
         var rsp = await mClient.Request("/api/substances/AAA")
-       .PutJsonAsync(
-            new {
-                Id = Guid.NewGuid(),
-                Name = "Grand Marnier-2",
-                Category = "Liqueurs-2",
-                Unit = "cl-2",
-            }
-        );
+            .PutJsonAsync(
+                new {
+                    Id = Guid.NewGuid(),
+                    Name = "Grand Marnier-2",
+                    Category = "Liqueurs-2",
+                    Unit = "cl-2",
+                }
+            );
 
         var dto = await rsp.GetJsonAsync<SubstanceDto>();
 
@@ -142,11 +142,11 @@ public class SubstanceControllerTests
     private async Task _CreateItem_2()
     {
         var rsp = await mClient.Request("/api/substances/BBB")
-       .PutJsonAsync(
-            new {
-                Name = "Limes",
-            }
-        );
+            .PutJsonAsync(
+                new {
+                    Name = "Limes",
+                }
+            );
 
         var dto = await rsp.GetJsonAsync<SubstanceDto>();
 

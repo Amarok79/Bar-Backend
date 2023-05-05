@@ -13,4 +13,6 @@ namespace Bar.Domain;
 /// <param name="FileName">
 ///     The file name of the Image, e.g. "KRO01084.jpg".
 /// </param>
-public sealed record Image(String FileName);
+public sealed record Image(
+    String FileName
+);
