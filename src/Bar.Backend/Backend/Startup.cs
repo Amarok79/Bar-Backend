@@ -35,6 +35,9 @@ public sealed class Startup
 
         services.AddControllers();
 
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+
         services.AddRepositories(Configuration);
     }
 
@@ -49,14 +52,16 @@ public sealed class Startup
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+        else
+        {
+            app.UseMiddleware<ApiKeyMiddleware>();
         }
 
-        app.UseMiddleware<ApiKeyMiddleware>();
-
         app.UseRouting();
-
         app.UseAuthorization();
-
         app.UseEndpoints(x => x.MapControllers());
     }
 }
