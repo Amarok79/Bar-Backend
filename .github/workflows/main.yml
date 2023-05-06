@@ -4,6 +4,9 @@ on:
   push:
     branches:
     - main
+  pull_request:
+    branches:
+    - main
 
 jobs:
   build:
@@ -22,11 +25,8 @@ jobs:
 
       # Build and Test
 
-      - name: Restore packages
-        run: dotnet restore
-
       - name: Build Debug
-        run: dotnet build --configuration Debug
+        run: dotnet build -c Debug
 
       - name: Run tests
         run: dotnet test --no-build --collect "Code Coverage"
@@ -34,7 +34,7 @@ jobs:
       # Build and Deploy
 
       - name: Build Release
-        run: dotnet build --configuration Release
+        run: dotnet build -c Release
 
       - name: Publish to Production
-        run: dotnet publish --configuration Release --no-build --no-self-contained /p:PublishProfile=Production.pubxml /p:Password="${{ secrets.DEPLOY_PASSWORD_PRODUCTION }}"
+        run: dotnet publish -c Release --no-build --no-self-contained /p:PublishProfile=Production.pubxml /p:Password="${{ secrets.DEPLOY_PASSWORD_PRODUCTION }}"
