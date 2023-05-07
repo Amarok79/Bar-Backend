@@ -81,6 +81,7 @@ public class GinControllerTests
                 new {
                     Name = "The Stin Dry Gin",
                     Teaser = "Styrian Dry Gin",
+                    Description = "Made in Styria",
                     Images = new[] { "KRO01046.jpg", "KRO00364.jpg" },
                 }
             );
@@ -88,15 +89,11 @@ public class GinControllerTests
         var dto = await rsp.GetJsonAsync<GinDto>();
 
         Check.That(rsp.StatusCode).IsEqualTo(200);
-
         Check.That(dto.Id).IsEqualTo(new Guid("6983cc47-047b-4e7c-8f17-af292ed80bd1"));
-
         Check.That(dto.Name).IsEqualTo("The Stin Dry Gin");
-
         Check.That(dto.Teaser).IsEqualTo("Styrian Dry Gin");
-
+        Check.That(dto.Description).IsEqualTo("Made in Styria");
         Check.That(dto.Images).ContainsExactly("KRO01046.jpg", "KRO00364.jpg");
-
         Check.That(dto.IsDraft).IsTrue();
     }
 
@@ -108,6 +105,7 @@ public class GinControllerTests
                     Id = Guid.NewGuid(),
                     Name = "The Stin Dry Gin-2",
                     Teaser = "Styrian Dry Gin-2",
+                    Description = "Foo",
                     Images = new[] { "KRO01046.jpg", "KRO00364.jpg", "FOO.jpg" },
                     IsDraft = false,
                 }
@@ -118,13 +116,10 @@ public class GinControllerTests
         Check.That(rsp.StatusCode).IsEqualTo(200);
 
         Check.That(dto.Id).IsEqualTo(new Guid("6983cc47-047b-4e7c-8f17-af292ed80bd1"));
-
         Check.That(dto.Name).IsEqualTo("The Stin Dry Gin-2");
-
         Check.That(dto.Teaser).IsEqualTo("Styrian Dry Gin-2");
-
+        Check.That(dto.Description).IsEqualTo("Foo");
         Check.That(dto.Images).ContainsExactly("KRO01046.jpg", "KRO00364.jpg", "FOO.jpg");
-
         Check.That(dto.IsDraft).IsFalse();
     }
 
@@ -137,15 +132,11 @@ public class GinControllerTests
         var dto = await rsp.GetJsonAsync<GinDto>();
 
         Check.That(rsp.StatusCode).IsEqualTo(200);
-
         Check.That(dto.Id).IsEqualTo(new Guid("6983cc47-047b-4e7c-8f17-af292ed80bd1"));
-
         Check.That(dto.Name).IsEqualTo("The Stin Dry Gin-2");
-
         Check.That(dto.Teaser).IsEqualTo("Styrian Dry Gin-2");
-
+        Check.That(dto.Description).IsEqualTo("Foo");
         Check.That(dto.Images).ContainsExactly("KRO01046.jpg", "KRO00364.jpg", "FOO.jpg");
-
         Check.That(dto.IsDraft).IsFalse();
     }
 
@@ -164,13 +155,10 @@ public class GinControllerTests
         Check.That(rsp.StatusCode).IsEqualTo(200);
 
         Check.That(dto.Id).IsEqualTo(new Guid("f942f025-7970-4990-84b7-68afba4fc341"));
-
         Check.That(dto.Name).IsEqualTo("Toplitz Gin");
-
         Check.That(dto.Teaser).IsEmpty();
-
+        Check.That(dto.Description).IsEmpty();
         Check.That(dto.Images).IsEmpty();
-
         Check.That(dto.IsDraft).IsTrue();
     }
 
@@ -185,19 +173,14 @@ public class GinControllerTests
         Check.That(dto).HasSize(2);
 
         Check.That(dto[0].Id).IsEqualTo(new Guid("6983cc47-047b-4e7c-8f17-af292ed80bd1"));
-
         Check.That(dto[0].Name).IsEqualTo("The Stin Dry Gin-2");
-
         Check.That(dto[0].Teaser).IsEqualTo("Styrian Dry Gin-2");
-
+        Check.That(dto[0].Description).IsEqualTo("Foo");
         Check.That(dto[0].Images).ContainsExactly("KRO01046.jpg", "KRO00364.jpg", "FOO.jpg");
-
         Check.That(dto[1].Id).IsEqualTo(new Guid("f942f025-7970-4990-84b7-68afba4fc341"));
-
         Check.That(dto[1].Name).IsEqualTo("Toplitz Gin");
-
         Check.That(dto[1].Teaser).IsEmpty();
-
+        Check.That(dto[1].Description).IsEmpty();
         Check.That(dto[1].Images).IsEmpty();
     }
 
@@ -210,13 +193,10 @@ public class GinControllerTests
         var dto = await rsp.GetJsonAsync<GinDto[]>();
 
         Check.That(dto).HasSize(1);
-
         Check.That(dto[0].Id).IsEqualTo(new Guid("6983cc47-047b-4e7c-8f17-af292ed80bd1"));
-
         Check.That(dto[0].Name).IsEqualTo("The Stin Dry Gin-2");
-
         Check.That(dto[0].Teaser).IsEqualTo("Styrian Dry Gin-2");
-
+        Check.That(dto[0].Description).IsEqualTo("Foo");
         Check.That(dto[0].Images).ContainsExactly("KRO01046.jpg", "KRO00364.jpg", "FOO.jpg");
     }
 

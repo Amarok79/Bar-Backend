@@ -24,6 +24,11 @@ internal sealed class GinDbo
     public String Name { get; set; } = default!;
 
     /// <summary>
+    ///     A longer description of the Gin in Markdown markup language.
+    /// </summary>
+    public String? Description { get; set; }
+
+    /// <summary>
     ///     A teaser of the Gin, e.g. "Styrian Dry Gin".
     /// </summary>
     public String? Teaser { get; set; }

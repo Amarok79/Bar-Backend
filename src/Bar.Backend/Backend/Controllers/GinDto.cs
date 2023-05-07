@@ -28,6 +28,11 @@ public sealed class GinDto
     public String? Teaser { get; set; }
 
     /// <summary>
+    ///     A longer description of the Gin in Markdown markup language.
+    /// </summary>
+    public String? Description { get; set; }
+
+    /// <summary>
     ///     A list of images of the Gin, e.g. "KRO01046.jpg", "KRO00364.jpg".
     /// </summary>
     public IList<String>? Images { get; set; }

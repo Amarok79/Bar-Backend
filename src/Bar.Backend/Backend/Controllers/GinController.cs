@@ -38,7 +38,7 @@ public sealed class GinController : ControllerBase
         return Ok(dto);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:guid}")]
     public async Task<ActionResult<GinDto>> GetSingle(
         [FromRoute] Guid id
     )
@@ -53,7 +53,7 @@ public sealed class GinController : ControllerBase
         return Ok(item.ToDto());
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteSingle(
         [FromRoute] Guid id
     )
@@ -63,7 +63,7 @@ public sealed class GinController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id:guid}")]
     public async Task<ActionResult<GinDto>> CreateOrUpdateSingle(
         [FromRoute] Guid id,
         [FromBody] GinDto dto

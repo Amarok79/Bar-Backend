@@ -18,6 +18,7 @@ public static class GinExtensions
 
         return new Gin(dto.Id.Value, dto.Name) {
             Teaser = dto.Teaser ?? String.Empty,
+            Description = dto.Description ?? String.Empty,
             Images = dto.Images is null ? Array.Empty<Image>() : dto.Images.Select(x => new Image(x)).ToList(),
             IsDraft = dto.IsDraft,
         };
@@ -31,6 +32,7 @@ public static class GinExtensions
             Id = entity.Id,
             Name = entity.Name,
             Teaser = entity.Teaser,
+            Description = entity.Description,
             Images = entity.Images.Select(x => x.FileName).ToList(),
             IsDraft = entity.IsDraft,
         };

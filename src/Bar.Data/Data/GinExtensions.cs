@@ -19,6 +19,7 @@ internal static class GinExtensions
             Id = entity.Id,
             Name = entity.Name,
             Teaser = entity.Teaser,
+            Description = entity.Description,
             Images = String.Join(';', entity.Images.Select(x => x.FileName)),
             IsDraft = entity.IsDraft,
         };
@@ -30,6 +31,7 @@ internal static class GinExtensions
     {
         return new Gin(dbo.Id, dbo.Name) {
             Teaser = dbo.Teaser ?? String.Empty,
+            Description = dbo.Description ?? String.Empty,
             Images = mapImages(),
             IsDraft = dbo.IsDraft,
         };

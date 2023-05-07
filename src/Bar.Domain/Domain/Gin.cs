@@ -25,7 +25,12 @@ public sealed record Gin(
     /// <summary>
     ///     A teaser of the Gin, e.g. "Styrian Dry Gin".
     /// </summary>
-    public String Teaser { get; init; } = "";
+    public String Teaser { get; init; } = String.Empty;
+
+    /// <summary>
+    ///     A longer description of the Gin in Markdown markup language.
+    /// </summary>
+    public String Description { get; init; } = String.Empty;
 
     /// <summary>
     ///     A list of images of the Gin.
