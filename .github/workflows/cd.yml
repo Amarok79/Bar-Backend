@@ -6,6 +6,9 @@ on:
     types: [ completed ]
     branches: [ main ]
 
+concurrency:
+  group: production-environment
+
 jobs:
   
   deploy:
