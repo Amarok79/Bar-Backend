@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.9.0"></a>
+## [1.9.0](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.9.0) (2023-5-9)
+
+### Features
+
+* Rework build/test/deploy automation ([40bea66](https://www.github.com/Amarok79/Bar-Backend/commit/40bea66784ff9b4393cb62faed150563dd85f0d9))
+
 <a name="1.8.0"></a>
 ## [1.8.0](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.8.0) (2023-5-7)
 
