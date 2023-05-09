@@ -2,13 +2,12 @@ name: CI
 
 on:
   push:
-    branches:
-    - main
+    branches: [ main ]
   pull_request:
-    branches:
-    - main
+    branches: [ main ]
 
 jobs:
+
   build:
     runs-on: windows-latest
 
@@ -25,16 +24,13 @@ jobs:
 
       # Build and Test
 
-      - name: Build Debug
+      - name: Build debug
         run: dotnet build -c Debug
 
       - name: Run tests
         run: dotnet test --no-build --collect "Code Coverage"
 
-      # Build and Deploy
+      # Build
 
-      - name: Build Release
+      - name: Build release
         run: dotnet build -c Release
-
-      - name: Publish to Production
-        run: dotnet publish -c Release --no-build --no-self-contained /p:PublishProfile=Production.pubxml /p:Password="${{ secrets.DEPLOY_PASSWORD_PRODUCTION }}"
