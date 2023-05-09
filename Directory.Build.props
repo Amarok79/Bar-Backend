@@ -6,12 +6,18 @@
 
     <PropertyGroup>
         <RootNamespace>Bar</RootNamespace>
-        <Nullable>enable</Nullable>
+        <Nullable>Enable</Nullable>
+        <ImplicitUsings>Enable</ImplicitUsings>
+        <Deterministic>True</Deterministic>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests'))">
         <IsPackable>False</IsPackable>
-        <Nullable>disable</Nullable>
+        <Nullable>Disable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'True'">
+        <ContinuousIntegrationBuild>True</ContinuousIntegrationBuild>
     </PropertyGroup>
 
 </Project>

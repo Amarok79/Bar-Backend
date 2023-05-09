@@ -1,9 +1,5 @@
 ﻿// Copyright (c) 2023, Olaf Kober <olaf.kober@outlook.com>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Bar.Domain;
 using Microsoft.AspNetCore.Mvc;
 

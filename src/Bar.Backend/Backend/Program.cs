@@ -1,10 +1,5 @@
 // Copyright (c) 2023, Olaf Kober <olaf.kober@outlook.com>
 
-using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-
-
 namespace Bar.Backend;
 
 

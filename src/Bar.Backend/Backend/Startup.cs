@@ -2,11 +2,6 @@
 
 using Bar.Backend.Middleware;
 using Bar.Data;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 
 namespace Bar.Backend;

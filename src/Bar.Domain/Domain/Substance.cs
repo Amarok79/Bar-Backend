@@ -1,8 +1,5 @@
 ﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
-using System;
-
-
 namespace Bar.Domain;
 
 
