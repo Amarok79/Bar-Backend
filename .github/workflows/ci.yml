@@ -22,13 +22,19 @@ jobs:
         with:
           dotnet-version: 7.0.x
 
+      - name: Restore packages
+        run: dotnet restore
+
       # Build and Test
       - name: Build Debug
         run: dotnet build -c Debug
 
       - name: Run tests
-        run: dotnet test --no-build --collect "Code Coverage"
+        run: dotnet test --no-build --logger trx
 
-      # Build
-      - name: Build Release
-        run: dotnet build -c Release
+      - name: Upload test results
+        uses: bibipkins/dotnet-test-reporter@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-title: 'Test Results'
+          results-path: ./TestResults/
