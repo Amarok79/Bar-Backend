@@ -14,23 +14,21 @@ jobs:
     steps:
       
       # Prepare
+      - name: Get sources
+        uses: actions/checkout@v3
+
       - name: Install .NET 7.0
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.x
 
-      - name: Get sources
-        uses: actions/checkout@v3
-
       # Build and Test
-
-      - name: Build debug
+      - name: Build Debug
         run: dotnet build -c Debug
 
       - name: Run tests
         run: dotnet test --no-build --collect "Code Coverage"
 
       # Build
-
-      - name: Build release
+      - name: Build Release
         run: dotnet build -c Release

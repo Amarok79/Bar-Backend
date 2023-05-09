@@ -13,22 +13,47 @@ jobs:
   
   deploy:
     runs-on: windows-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       
       # Prepare
+      - name: Get sources
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - name: Install .NET 7.0
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.x
 
-      - name: Get sources
-        uses: actions/checkout@v3
+      - name: Install Versionize    
+        run: dotnet tool restore
+ 
+      - name: Setup Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      # Bump version
+      - name: Bump version
+        id: versionize
+        run: versionize --ignore-insignificant-commits
+        continue-on-error: true
 
       # Build and Deploy
-
       - name: Build Release
         run: dotnet build -c Release
 
       - name: Publish to Production
         run: dotnet publish -c Release --no-build --no-self-contained /p:PublishProfile=Production.pubxml /p:Password="${{ secrets.DEPLOY_PASSWORD_PRODUCTION }}"
+
+      # Push changes
+      - name: Push changes to GitHub
+        if: steps.versionize.outcome == 'success'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
