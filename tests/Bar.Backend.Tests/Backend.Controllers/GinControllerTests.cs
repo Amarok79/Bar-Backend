@@ -140,9 +140,10 @@ public class GinControllerTests
 
     private async Task _CreateItem_2()
     {
-        var rsp = await mClient.Request("/api/gins/f942f025-7970-4990-84b7-68afba4fc341")
-            .PutJsonAsync(
+        var rsp = await mClient.Request("/api/gins")
+            .PostJsonAsync(
                 new {
+                    Id = new Guid("f942f025-7970-4990-84b7-68afba4fc341"),
                     Name = "Toplitz Gin",
                     IsDraft = true,
                 }
@@ -150,7 +151,7 @@ public class GinControllerTests
 
         var dto = await rsp.GetJsonAsync<GinDto>();
 
-        Check.That(rsp.StatusCode).IsEqualTo(200);
+        Check.That(rsp.StatusCode).IsEqualTo(201);
 
         Check.That(dto.Id).IsEqualTo(new Guid("f942f025-7970-4990-84b7-68afba4fc341"));
         Check.That(dto.Name).IsEqualTo("Toplitz Gin");
