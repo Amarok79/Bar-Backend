@@ -33,7 +33,7 @@ jobs:
         run: dotnet test --no-build --logger trx
 
       - name: Upload test results
-        uses: bibipkins/dotnet-test-reporter@v1
+        uses: bibipkins/dotnet-test-reporter@v1.2.2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-title: 'Test Results'
