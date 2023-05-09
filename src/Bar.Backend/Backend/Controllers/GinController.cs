@@ -73,4 +73,18 @@ public sealed class GinController : ControllerBase
 
         return Ok(item!.ToDto());
     }
+
+    [HttpPost]
+    public async Task<ActionResult<GinDto>> CreateSingle(
+        [FromBody] GinDto dto
+    )
+    {
+        var entity = dto.ToEntity();
+
+        await mRepository.AddOrUpdateAsync(entity);
+
+        var item = await mRepository.GetOrDefaultAsync(entity.Id);
+
+        return CreatedAtAction(nameof(GetSingle), new { id = entity.Id }, item);
+    }
 }
