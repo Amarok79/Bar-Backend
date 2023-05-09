@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.10.0"></a>
+## [1.10.0](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.0) (2023-5-9)
+
+### Features
+
+* Allow POST on /gins for creating new Gin items ([0989076](https://www.github.com/Amarok79/Bar-Backend/commit/09890762f83b12dcf34fd6a385c60a63b4679df0))
+
 <a name="1.9.0"></a>
 ## [1.9.0](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.9.0) (2023-5-9)
 
