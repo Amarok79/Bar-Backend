@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.10.1"></a>
+## [1.10.1](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.1) (2023-5-10)
+
+### Other
+
+* Allow to push to origin ([aa0cda2](https://www.github.com/Amarok79/Bar-Backend/commit/aa0cda25b68e442144126f09dd7e6a961808114a))
+* Rework GitHub actions ([029813f](https://www.github.com/Amarok79/Bar-Backend/commit/029813f5b8ddb813e1a6a029c9f17430ed61d3c5))
+
 <a name="1.10.0"></a>
 ## [1.10.0](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.0) (2023-5-9)
 
