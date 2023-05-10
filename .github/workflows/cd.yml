@@ -6,19 +6,22 @@ on:
     types: [ completed ]
     branches: [ main ]
 
+permissions: {}
+
 concurrency:
   group: production-environment
 
 jobs:
-  
-  deploy:
-    name: "Deploy"
+
+  # --- JOB: deploy-to-production
+
+  deploy-to-production:
+    name: Deploy to Production
     runs-on: windows-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      
-      - name: Get sources
+      - name: Get Sources
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -28,10 +31,10 @@ jobs:
         with:
           dotnet-version: 7.0.x
 
-      - name: Restore packages
+      - name: Restore Packages
         run: dotnet restore
 
-      - name: Restore tools
+      - name: Restore Tools
         run: dotnet tool restore
  
       - name: Setup Git
@@ -39,7 +42,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-      - name: Bump version
+      - name: Bump Version
         id: versionize
         run: dotnet versionize --ignore-insignificant-commits
 
@@ -49,7 +52,7 @@ jobs:
       - name: Publish to Production
         run: dotnet publish -c Release --no-build --no-self-contained /p:PublishProfile=Production.pubxml /p:Password="${{ secrets.DEPLOY_PASSWORD_PRODUCTION }}"
 
-      - name: Push changes
+      - name: Push Changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

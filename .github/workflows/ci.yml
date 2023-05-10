@@ -6,32 +6,32 @@ on:
   pull_request:
     branches: [ main ]
 
-permissions:
-  checks: write
-  pull-requests: write
+permissions: {}
 
 jobs:
 
-  event_file:
-    name: "Event File"
+  # --- JOB: prepare-test-reporting
+
+  prepare-test-reporting:
+    name: Prepare Test Reporting
     runs-on: ubuntu-latest
 
     steps:
-
-    - name: Upload
+    - name: Upload Event Payload
       uses: actions/upload-artifact@v3
       with:
         name: Event File
         path: ${{ github.event_path }}
 
+
+  # --- JOB: build-and-test
   
   build-and-test:
-    name: "Build and Test"
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
-      
-      - name: Get sources
+      - name: Get Sources
         uses: actions/checkout@v3
 
       - name: Get .NET 7.0
@@ -39,16 +39,16 @@ jobs:
         with:
           dotnet-version: 7.0.x
 
-      - name: Restore packages
+      - name: Restore Packages
         run: dotnet restore
 
       - name: Build Debug
         run: dotnet build -c Debug
 
-      - name: Run tests
+      - name: Run Tests
         run: dotnet test --no-build --logger trx --results-directory out/test-results
 
-      - name: Upload test results
+      - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v3
         with:
