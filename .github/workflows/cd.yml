@@ -47,7 +47,7 @@ jobs:
 
       - name: Bump Version
         id: versionize
-        run: dotnet versionize --ignore-insignificant-commits
+        run: dotnet versionize --changelog-all
 
       - name: Build Release
         run: dotnet build -c Release
