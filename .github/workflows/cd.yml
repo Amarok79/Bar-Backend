@@ -19,6 +19,9 @@ jobs:
     name: Deploy to Production
     runs-on: windows-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    
+    permissions:
+      contents: write
 
     steps:
       - name: Get Sources
