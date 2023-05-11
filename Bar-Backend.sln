@@ -17,12 +17,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bar.Backend.Tests", "tests\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{71FC8069-1A83-44D8-81CE-C80971731FC9}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		Bar-Backend.sln.DotSettings = Bar-Backend.sln.DotSettings
 		Bar-Backend.v3.ncrunchsolution = Bar-Backend.v3.ncrunchsolution
 		CHANGELOG.md = CHANGELOG.md
 		Directory.Build.props = Directory.Build.props
+		Dockerfile = Dockerfile
 		global.json = global.json
 		LICENSE = LICENSE
 		nuget.config = nuget.config

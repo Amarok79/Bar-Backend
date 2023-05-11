@@ -1,0 +1,39 @@
+name: Docker
+
+on:
+  workflow_run:
+    workflows: [ CI ]
+    types: [ completed ]
+    branches: [ main ]
+
+permissions: {}
+
+concurrency:
+  group: docker-environment
+
+jobs:
+
+  # --- JOB: build-and-publish
+  build-and-publish: 
+    name: Build and Publish via Docker
+    runs-on: windows-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Get Sources
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Docker Login
+        uses: docker/login-action@v2.1.0
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_PAT }}
+
+      - name: Docker Build and Push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: amarok79/bar-backend:latest
