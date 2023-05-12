@@ -41,3 +41,12 @@ jobs:
           context: .
           push: true
           tags: amarok79/bar-backend:latest
+
+
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.PVS_HOST }}
+          username: ${{ secrets.PVS_SSH_USER }}
+          password: ${{ secrets.PVS_SSH_PASSWORD }}
+          script: /usr/bin/bash /opt/run.sh
