@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.10.2"></a>
+## [1.10.2](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.2) (2023-5-12)
+
+### Other
+
+* Add docker support ([668f274](https://www.github.com/Amarok79/Bar-Backend/commit/668f27439b343516f51124358eba1035a152ae3b))
+* Add docker support ([a099bab](https://www.github.com/Amarok79/Bar-Backend/commit/a099bab4c00d601ca33b902458df0e9bca03986b))
+* Allow manually running workflows ([38e8f29](https://www.github.com/Amarok79/Bar-Backend/commit/38e8f294fb7cd5c0b1735093f229ce393981da31))
+* Enable HSTS ([e8075f1](https://www.github.com/Amarok79/Bar-Backend/commit/e8075f1e36734635a0cdb7dbed1a0064518c54f9))
+* Restart docker container ([5e94a5d](https://www.github.com/Amarok79/Bar-Backend/commit/5e94a5d9b2dd7220755051a62ed5ec3c08a7cd0b))
+* Run docker workflow on Linux ([80df98d](https://www.github.com/Amarok79/Bar-Backend/commit/80df98d54d30c610862ec9b37a2d998e27e911d0))
+
 <a name="1.10.1"></a>
 ## [1.10.1](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.1) (2023-5-10)
 
