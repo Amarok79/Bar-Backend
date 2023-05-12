@@ -52,6 +52,7 @@ public sealed class Startup
         }
         else
         {
+            app.UseHsts();
             app.UseMiddleware<ApiKeyMiddleware>();
         }
 
