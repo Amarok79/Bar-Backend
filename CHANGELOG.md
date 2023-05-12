@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.10.5"></a>
+## [1.10.5](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.5) (2023-5-12)
+
+### Other
+
+* Enable CORS, disable HSTS ([be208a7](https://www.github.com/Amarok79/Bar-Backend/commit/be208a749ea9ffe6a55930e5c8764091d7614d4f))
+
 <a name="1.10.4"></a>
 ## [1.10.4](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.4) (2023-5-12)
 
