@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.10.3"></a>
+## [1.10.3](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.3) (2023-5-12)
+
+### Other
+
+* More logging ([28800db](https://www.github.com/Amarok79/Bar-Backend/commit/28800dbbaeec764b1963150bbe596d784449efea))
+* Rework workflows (deployment to web/docker) ([4f34937](https://www.github.com/Amarok79/Bar-Backend/commit/4f34937542d25321ffbc9621c29565419306fb42))
+
 <a name="1.10.2"></a>
 ## [1.10.2](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.2) (2023-5-12)
 
