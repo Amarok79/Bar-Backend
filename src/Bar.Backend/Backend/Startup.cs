@@ -24,6 +24,10 @@ public sealed class Startup
         IServiceCollection services
     )
     {
+        services.AddCors(options => options.AddDefaultPolicy(builder =>
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+        ));
+
         services.AddApplicationInsightsTelemetry(
             options => options.ConnectionString = Configuration["ApplicationInsights:ConnectionString"]
         );
@@ -52,11 +56,11 @@ public sealed class Startup
         }
         else
         {
-            app.UseHsts();
             app.UseMiddleware<ApiKeyMiddleware>();
         }
 
         app.UseRouting();
+        app.UseCors();
         app.UseAuthorization();
         app.UseEndpoints(x => x.MapControllers());
     }
