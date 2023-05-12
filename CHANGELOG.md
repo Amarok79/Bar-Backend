@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.10.4"></a>
+## [1.10.4](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.4) (2023-5-12)
+
+### Other
+
+* Check out the commit we pushed before in bump-version ([dbfc939](https://www.github.com/Amarok79/Bar-Backend/commit/dbfc939f7443ba30e0b1bbfc570d4dbc010ec1af))
+
 <a name="1.10.3"></a>
 ## [1.10.3](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.3) (2023-5-12)
 
