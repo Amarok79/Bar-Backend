@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.10.8"></a>
+## [1.10.8](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.8) (2023-5-13)
+
+### Other
+
+* Remove legacy (web) deployment ([de31d09](https://www.github.com/Amarok79/Bar-Backend/commit/de31d09bce64696e5bcf5113543ec83be43f62e7))
+
 <a name="1.10.7"></a>
 ## [1.10.7](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.7) (2023-5-13)
 
