@@ -15,6 +15,7 @@ concurrency:
 jobs:
 
   # --- JOB: bump-version
+
   bump-version:
     name: Bump Version
     runs-on: ubuntu-latest
@@ -60,38 +61,11 @@ jobs:
         id: vars
         run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-  # --- JOB: deploy-to-production-web
 
-  deploy-to-production-web:
-    name: Deploy to Production (Web)
-    runs-on: windows-latest
-    needs: bump-version
-    
-    steps:
-      - name: Get Sources
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ needs.bump-version.outputs.sha }}
+  # --- JOB: deploy-to-production
 
-      - name: Get .NET 7.0
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 7.0.x
-
-      - name: Restore Packages
-        run: dotnet restore
-
-      - name: Build Release
-        run: dotnet build -c Release
-
-      - name: Publish to Production
-        run: dotnet publish -c Release --no-build --no-self-contained /p:PublishProfile=Production.pubxml /p:Password="${{ secrets.DEPLOY_PASSWORD_PRODUCTION }}"
-
-
-  # --- JOB: deploy-to-production-docker
-
-  deploy-to-production-docker: 
-    name: Build and Production (Docker)
+  deploy-to-production: 
+    name: Build and Production
     runs-on: ubuntu-latest
     needs: bump-version
 
