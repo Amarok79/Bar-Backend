@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.10.10"></a>
+## [1.10.10](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.10) (2023-5-25)
+
+### Other
+
+* Bump coverlet.collector from 3.2.0 to 6.0.0 (#6) ([88cf0b7](https://www.github.com/Amarok79/Bar-Backend/commit/88cf0b730fb6f12e4cbc614168d54461052be0fc))
+
 <a name="1.10.9"></a>
 ## [1.10.9](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.9) (2023-5-17)
 
