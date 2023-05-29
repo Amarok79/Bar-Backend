@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.0"></a>
+## [1.11.0](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.0) (2023-5-29)
+
+### Features
+
+* Change data storage from SQL Server to MongoDB ([24d0ca4](https://www.github.com/Amarok79/Bar-Backend/commit/24d0ca4ae3355059860ad8f9ba005a9b46dbf58d))
+
 <a name="1.10.10"></a>
 ## [1.10.10](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.10.10) (2023-5-25)
 
