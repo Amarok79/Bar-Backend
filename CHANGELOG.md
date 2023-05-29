@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.2"></a>
+## [1.11.2](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.2) (2023-5-29)
+
+### Other
+
+* Refactor domain ([b6e60e2](https://www.github.com/Amarok79/Bar-Backend/commit/b6e60e274d6e3ced864613705317f2e7c14d9409))
+
 <a name="1.11.1"></a>
 ## [1.11.1](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.1) (2023-5-29)
 
