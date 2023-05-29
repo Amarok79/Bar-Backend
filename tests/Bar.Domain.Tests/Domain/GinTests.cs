@@ -14,7 +14,6 @@ public class GinTests
     public void Usage()
     {
         var id = Guid.NewGuid();
-
         var gin = new Gin(id, "The Stin Dry Gin");
 
         Check.That(gin.Id).IsEqualTo(id);

@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2023, Olaf Kober <olaf.kober@outlook.com>
 
 namespace Bar.Domain;
 
@@ -21,7 +21,7 @@ public sealed record Rum(
     /// <summary>
     ///     A teaser of the Rum, e.g. "Martinique".
     /// </summary>
-    public String Teaser { get; init; } = "";
+    public String Teaser { get; init; } = String.Empty;
 
     /// <summary>
     ///     A longer description of the Rum in Markdown markup language.

@@ -4,7 +4,7 @@ namespace Bar.Domain;
 
 
 /// <summary>
-///     Represents an Image of a Rum, Gin or a Drink.
+///     Represents an Image of a Rum, Gin, or a Drink.
 /// </summary>
 /// 
 /// <param name="FileName">
