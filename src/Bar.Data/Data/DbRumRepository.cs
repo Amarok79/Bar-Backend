@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2023, Olaf Kober <olaf.kober@outlook.com>
 
 using Bar.Domain;
 using MongoDB.Driver;
@@ -73,6 +73,6 @@ internal sealed class DbRumRepository : IRumRepository
                     IsUpsert = true,
                 });
 
-        return result.UpsertedId.IsBsonNull;
+        return result.ModifiedCount == 0;
     }
 }
