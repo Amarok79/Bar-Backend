@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.1"></a>
+## [1.11.1](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.1) (2023-5-29)
+
+### Bug Fixes
+
+* Fix exception in AddOrUpdateAsync() of Gin/Rum repository (#8) ([3cac59c](https://www.github.com/Amarok79/Bar-Backend/commit/3cac59c7582884b4078014d5b08a5d9e173bd2e4))
+
 <a name="1.11.0"></a>
 ## [1.11.0](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.0) (2023-5-29)
 
