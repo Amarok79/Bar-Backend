@@ -1,8 +1,7 @@
-// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
+// Copyright (c) 2023, Olaf Kober <olaf.kober@outlook.com>
 
 using Bar.Backend.Middleware;
 using Bar.Data;
-using Bar.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -34,9 +33,7 @@ public sealed class TestStartup
     )
     {
         services.AddControllers().AddApplicationPart(typeof(RumController).Assembly);
-
-        services.AddScoped<IGinRepository, DbGinRepository>();
-        services.AddScoped<IRumRepository, DbRumRepository>();
+        services.AddRepositories();
     }
 
     public void Configure(
@@ -45,13 +42,9 @@ public sealed class TestStartup
     )
     {
         app.UseDeveloperExceptionPage();
-
         app.UseMiddleware<ApiKeyMiddleware>();
-
         app.UseRouting();
-
         app.UseAuthorization();
-
         app.UseEndpoints(x => x.MapControllers());
     }
 }

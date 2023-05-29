@@ -28,15 +28,9 @@ public sealed class Startup
             builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
         ));
 
-        //services.AddApplicationInsightsTelemetry(
-        //    options => options.ConnectionString = Configuration["ApplicationInsights:ConnectionString"]
-        //);
-
         services.AddControllers();
-
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
-
         services.AddRepositories();
     }
 

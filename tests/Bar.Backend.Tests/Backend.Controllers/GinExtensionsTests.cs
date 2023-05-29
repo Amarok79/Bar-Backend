@@ -25,6 +25,7 @@ public class GinExtensionsTests
         Check.That(entity.Teaser).IsEmpty();
         Check.That(entity.Description).IsEmpty();
         Check.That(entity.Images).IsEmpty();
+        Check.That(entity.IsDraft).IsTrue();
     }
 
     [Test]
@@ -44,6 +45,7 @@ public class GinExtensionsTests
         Check.That(entity.Teaser).IsEmpty();
         Check.That(entity.Description).IsEmpty();
         Check.That(entity.Images).IsEmpty();
+        Check.That(entity.IsDraft).IsTrue();
     }
 
     [Test]
@@ -57,6 +59,7 @@ public class GinExtensionsTests
             Teaser = "Styrian Dry Gin",
             Description = "Foo",
             Images = new[] { "KRO01046.jpg", "KRO00364.jpg" },
+            IsDraft = false,
         };
 
         var entity = dto.ToEntity();
@@ -68,6 +71,7 @@ public class GinExtensionsTests
         Check.That(entity.Images).HasSize(2);
         Check.That(entity.Images[0].FileName).IsEqualTo("KRO01046.jpg");
         Check.That(entity.Images[1].FileName).IsEqualTo("KRO00364.jpg");
+        Check.That(entity.IsDraft).IsFalse();
     }
 
 
@@ -89,5 +93,6 @@ public class GinExtensionsTests
         Check.That(dto.Teaser).IsEqualTo("Styrian Dry Gin");
         Check.That(dto.Description).IsEqualTo("Foo");
         Check.That(dto.Images).ContainsExactly("KRO01046.jpg", "KRO00364.jpg");
+        Check.That(dto.IsDraft).IsTrue();
     }
 }

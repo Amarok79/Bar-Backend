@@ -23,16 +23,18 @@ public sealed class RumController : ControllerBase
 
 
     [HttpGet]
-    public async Task<ActionResult<IList<RumDto>>> GetAll()
+    public async Task<ActionResult<IList<RumDto>>> GetAll(
+        [FromQuery] Boolean includeDrafts = false
+    )
     {
-        var items = await mRepository.GetAllAsync();
+        var items = await mRepository.GetAllAsync(includeDrafts);
 
         var dto = items.Select(x => x.ToDto()).OrderBy(x => x.Name);
 
         return Ok(dto);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:guid}")]
     public async Task<ActionResult<RumDto>> GetSingle(
         [FromRoute] Guid id
     )
@@ -47,7 +49,7 @@ public sealed class RumController : ControllerBase
         return Ok(item.ToDto());
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteSingle(
         [FromRoute] Guid id
     )
@@ -57,7 +59,7 @@ public sealed class RumController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id:guid}")]
     public async Task<ActionResult<RumDto>> CreateOrUpdateSingle(
         [FromRoute] Guid id,
         [FromBody] RumDto dto
@@ -70,5 +72,19 @@ public sealed class RumController : ControllerBase
         var item = await mRepository.GetOrDefaultAsync(id);
 
         return Ok(item!.ToDto());
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<RumDto>> CreateSingle(
+        [FromBody] RumDto dto
+    )
+    {
+        var entity = dto.ToEntity();
+
+        await mRepository.AddOrUpdateAsync(entity);
+
+        var item = await mRepository.GetOrDefaultAsync(entity.Id);
+
+        return CreatedAtAction(nameof(GetSingle), new { id = entity.Id }, item);
     }
 }

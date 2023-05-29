@@ -1,8 +1,11 @@
 ﻿// Copyright (c) 2023, Olaf Kober <olaf.kober@outlook.com>
 
+using EphemeralMongo;
 using Flurl.Http;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
+using NCrunch.Framework;
 using NFluent;
 using NUnit.Framework;
 
@@ -11,9 +14,10 @@ namespace Bar.Backend.Controllers;
 
 
 [TestFixture]
-[Ignore("Need rewrite")]
+[Serial]
 public class GinControllerTests
 {
+    private IMongoRunner mRunner;
     private TestServer mServer;
     private FlurlClient mClient;
 
@@ -21,7 +25,14 @@ public class GinControllerTests
     [SetUp]
     public void Setup()
     {
-        var webHostBuilder = new WebHostBuilder().UseStartup(x => new TestStartup("Gin", x.Configuration));
+        mRunner = MongoRunner.Run();
+
+        var webHostBuilder = new WebHostBuilder()
+            .ConfigureAppConfiguration(x => x.AddInMemoryCollection(new Dictionary<String, String> {
+                    { "ConnectionStrings:Database", mRunner.ConnectionString },
+                })
+            )
+            .UseStartup(x => new TestStartup("Gin", x.Configuration));
 
         mServer = new TestServer(webHostBuilder);
         mClient = new FlurlClient(mServer.CreateClient());
@@ -30,8 +41,9 @@ public class GinControllerTests
     [TearDown]
     public void Cleanup()
     {
-        mClient.Dispose();
-        mServer.Dispose();
+        mClient?.Dispose();
+        mServer?.Dispose();
+        mRunner?.Dispose();
     }
 
 
