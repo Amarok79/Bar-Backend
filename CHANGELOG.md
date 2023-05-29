@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.3"></a>
+## [1.11.3](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.3) (2023-5-29)
+
+### Other
+
+* Fix build error ([9d410ee](https://www.github.com/Amarok79/Bar-Backend/commit/9d410ee4690b962f1260a0f840f96f152b19a4ef))
+* Refactor data access layer ([3f6cd7b](https://www.github.com/Amarok79/Bar-Backend/commit/3f6cd7b90c63b82235e7b856b31a40c0cd45171f))
+
 <a name="1.11.2"></a>
 ## [1.11.2](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.2) (2023-5-29)
 
