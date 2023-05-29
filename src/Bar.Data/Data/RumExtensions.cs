@@ -13,10 +13,12 @@ internal static class RumExtensions
     )
     {
         return new RumDbo {
-            Id = entity.Id,
+            Id = entity.Id.ToString(),
             Name = entity.Name,
             Teaser = entity.Teaser,
-            Images = String.Join(';', entity.Images.Select(x => x.FileName)),
+            Description = entity.Description,
+            Images = entity.Images.Select(x => x.FileName).ToList(),
+            IsDraft = entity.IsDraft,
         };
     }
 
@@ -24,17 +26,17 @@ internal static class RumExtensions
         this RumDbo dbo
     )
     {
-        return new Rum(dbo.Id, dbo.Name) {
+        return new Rum(new Guid(dbo.Id), dbo.Name) {
             Teaser = dbo.Teaser ?? String.Empty,
+            Description = dbo.Description ?? String.Empty,
             Images = mapImages(),
+            IsDraft = dbo.IsDraft,
         };
 
 
         IReadOnlyList<Image> mapImages()
         {
-            return dbo.Images == null
-                ? Array.Empty<Image>()
-                : dbo.Images.Split(';', StringSplitOptions.RemoveEmptyEntries).Select(x => new Image(x)).ToList();
+            return dbo.Images.Select(x => new Image(x)).ToList();
         }
     }
 }

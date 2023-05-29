@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2023, Olaf Kober <olaf.kober@outlook.com>
 
 using Bar.Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -18,15 +16,12 @@ public static class DataServiceCollectionExtensions
     ///     Adds the Rum and Gin repositories.
     /// </summary>
     public static IServiceCollection AddRepositories(
-        this IServiceCollection services,
-        IConfiguration configuration
+        this IServiceCollection services
     )
     {
-        services.AddDbContext<BarDbContext>(x => x.UseSqlServer(configuration.GetConnectionString("Database")));
+        services.AddSingleton<IDatabaseService, DatabaseService>();
         services.AddScoped<IGinRepository, DbGinRepository>();
         services.AddScoped<IRumRepository, DbRumRepository>();
-        services.AddScoped<ISubstanceRepository, DbSubstanceRepository>();
-        services.AddTransient<IDatabaseService, DatabaseServiceImpl>();
 
         return services;
     }

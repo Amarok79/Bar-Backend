@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
 using Bar.Domain;
-using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 
 
 namespace Bar.Data;
@@ -9,14 +9,20 @@ namespace Bar.Data;
 
 internal sealed class DbRumRepository : IRumRepository
 {
-    private readonly BarDbContext mDbContext;
+    private readonly IDatabaseService mDatabaseService;
 
 
     public DbRumRepository(
-        BarDbContext dbContext
+        IDatabaseService databaseService
     )
     {
-        mDbContext = dbContext;
+        mDatabaseService = databaseService;
+    }
+
+
+    private IMongoCollection<RumDbo> _GetCollection()
+    {
+        return mDatabaseService.GetClient().GetDatabase("bar-db").GetCollection<RumDbo>("rums");
     }
 
 
@@ -24,14 +30,22 @@ internal sealed class DbRumRepository : IRumRepository
         Boolean includeDrafts = false
     )
     {
-        return await mDbContext.Rums.AsNoTracking().Select(x => x.ToEntity()).ToListAsync();
+        var filter = includeDrafts
+            ? Builders<RumDbo>.Filter.Empty
+            : Builders<RumDbo>.Filter.Eq("IsDraft", false);
+
+        var rums = await _GetCollection().Find(filter).ToListAsync();
+
+        return rums.Select(x => x.ToEntity()).ToList();
     }
 
     public async Task<Rum?> GetOrDefaultAsync(
         Guid id
     )
     {
-        var dbo = await mDbContext.Rums.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+        var filter = Builders<RumDbo>.Filter.Eq("_id", id.ToString());
+
+        var dbo = await _GetCollection().Find(filter).FirstOrDefaultAsync();
 
         return dbo?.ToEntity();
     }
@@ -40,36 +54,25 @@ internal sealed class DbRumRepository : IRumRepository
         Guid id
     )
     {
-        var dbo = await mDbContext.Rums.SingleOrDefaultAsync(x => x.Id == id);
+        var filter = Builders<RumDbo>.Filter.Eq("_id", id.ToString());
 
-        if (dbo is null)
-        {
-            return false;
-        }
+        var dto = await _GetCollection().FindOneAndDeleteAsync(filter);
 
-        mDbContext.Rums.Remove(dbo);
-        await mDbContext.SaveChangesAsync();
-
-        return true;
+        return dto != null;
     }
 
     public async Task<Boolean> AddOrUpdateAsync(
         Rum item
     )
     {
-        var exists = await mDbContext.Rums.AsNoTracking().AnyAsync(x => x.Id == item.Id);
+        var filter = Builders<RumDbo>.Filter.Eq("_id", item.Id.ToString());
 
-        if (exists)
-        {
-            var dbo = mDbContext.Rums.Update(item.ToDbo());
-            await mDbContext.SaveChangesAsync();
+        var result = await _GetCollection()
+            .ReplaceOneAsync(filter, item.ToDbo(),
+                new ReplaceOptions {
+                    IsUpsert = true,
+                });
 
-            return false;
-        }
-
-        mDbContext.Rums.Add(item.ToDbo());
-        await mDbContext.SaveChangesAsync();
-
-        return true;
+        return result.UpsertedId.IsBsonNull;
     }
 }

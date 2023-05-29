@@ -24,7 +24,17 @@ public sealed record Rum(
     public String Teaser { get; init; } = "";
 
     /// <summary>
+    ///     A longer description of the Rum in Markdown markup language.
+    /// </summary>
+    public String Description { get; init; } = String.Empty;
+
+    /// <summary>
     ///     A list of images of the Rum.
     /// </summary>
     public IReadOnlyList<Image> Images { get; init; } = Array.Empty<Image>();
+
+    /// <summary>
+    ///     Indicates whether the Rum is in draft-mode.
+    /// </summary>
+    public Boolean IsDraft { get; init; } = true;
 }

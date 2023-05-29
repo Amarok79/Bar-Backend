@@ -5,7 +5,6 @@ using Bar.Data;
 using Bar.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -36,11 +35,8 @@ public sealed class TestStartup
     {
         services.AddControllers().AddApplicationPart(typeof(RumController).Assembly);
 
-        services.AddDbContext<BarDbContext>(options => options.UseInMemoryDatabase(mName));
-
         services.AddScoped<IGinRepository, DbGinRepository>();
         services.AddScoped<IRumRepository, DbRumRepository>();
-        services.AddScoped<ISubstanceRepository, DbSubstanceRepository>();
     }
 
     public void Configure(

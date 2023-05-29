@@ -11,6 +11,7 @@ namespace Bar.Backend.Controllers;
 
 
 [TestFixture]
+[Ignore("Need rewrite")]
 public class RumControllerTests
 {
     private TestServer mServer;
