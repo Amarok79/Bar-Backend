@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.4"></a>
+## [1.11.4](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.4) (2023-5-29)
+
+### Other
+
+* Refactor API layer ([948749c](https://www.github.com/Amarok79/Bar-Backend/commit/948749c217acea4eec995dac6623e7ba8914dd73))
+
 <a name="1.11.3"></a>
 ## [1.11.3](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.3) (2023-5-29)
 
