@@ -18,7 +18,7 @@ public class GinExtensionsTests
         var entity = new Gin(id, "The Stin Dry Gin");
         var dbo = entity.ToDbo();
 
-        Check.That(dbo.Id).IsEqualTo(id);
+        Check.That(dbo.Id).IsEqualTo(id.ToString());
         Check.That(dbo.Name).IsEqualTo("The Stin Dry Gin");
         Check.That(dbo.Teaser).IsEmpty();
         Check.That(dbo.Description).IsEmpty();
@@ -40,11 +40,11 @@ public class GinExtensionsTests
 
         var dbo = entity.ToDbo();
 
-        Check.That(dbo.Id).IsEqualTo(id);
+        Check.That(dbo.Id).IsEqualTo(id.ToString());
         Check.That(dbo.Name).IsEqualTo("The Stin Dry Gin");
         Check.That(dbo.Teaser).IsEqualTo("Styrian Dry Gin");
         Check.That(dbo.Description).IsEqualTo("Foo");
-        Check.That(dbo.Images).IsEqualTo("KRO01046.jpg;KRO00364.jpg");
+        Check.That(dbo.Images).ContainsExactly("KRO01046.jpg", "KRO00364.jpg");
         Check.That(dbo.IsDraft).IsTrue();
     }
 
@@ -55,11 +55,11 @@ public class GinExtensionsTests
         var id = Guid.NewGuid();
 
         var dbo = new GinDbo {
-            Id = id,
+            Id = id.ToString(),
             Name = "The Stin Dry Gin",
             Teaser = null,
             Description = null,
-            Images = null,
+            Images = Array.Empty<String>(),
             IsDraft = true,
         };
 
@@ -79,11 +79,11 @@ public class GinExtensionsTests
         var id = Guid.NewGuid();
 
         var dbo = new GinDbo {
-            Id = id,
+            Id = id.ToString(),
             Name = "The Stin Dry Gin",
             Teaser = "Styrian Dry Gin",
             Description = "Foo",
-            Images = "KRO01046.jpg;KRO00364.jpg",
+            Images = new[] { "KRO01046.jpg", "KRO00364.jpg" },
             IsDraft = true,
         };
 

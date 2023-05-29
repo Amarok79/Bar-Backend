@@ -1,21 +1,17 @@
 ﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
 
-using System.ComponentModel.DataAnnotations.Schema;
-
-
 namespace Bar.Data;
 
 
 /// <summary>
 ///     Represents a Rum.
 /// </summary>
-[Table("Rums")]
 internal sealed class RumDbo
 {
     /// <summary>
     ///     The unique Id of the Rum.
     /// </summary>
-    public Guid Id { get; set; }
+    public String Id { get; set; } = default!;
 
     /// <summary>
     ///     The name of the Rum, e.g. "Clément Rhum Blanc".
@@ -28,7 +24,17 @@ internal sealed class RumDbo
     public String? Teaser { get; set; }
 
     /// <summary>
-    ///     A semi-colon separated list of images of the Rum, e.g. "KRO01084.jpg;KRO00410.jpg".
+    ///     A longer description of the Rum in Markdown markup language.
     /// </summary>
-    public String? Images { get; set; }
+    public String? Description { get; set; }
+
+    /// <summary>
+    ///     A list of images of the Rum, e.g. "KRO01084.jpg, KRO00410.jpg".
+    /// </summary>
+    public IList<String> Images { get; set; } = new List<String>();
+
+    /// <summary>
+    ///     Indicates whether the Rum is in draft-mode.
+    /// </summary>
+    public Boolean IsDraft { get; set; }
 }

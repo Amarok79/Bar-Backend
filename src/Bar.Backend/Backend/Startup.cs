@@ -28,16 +28,16 @@ public sealed class Startup
             builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
         ));
 
-        services.AddApplicationInsightsTelemetry(
-            options => options.ConnectionString = Configuration["ApplicationInsights:ConnectionString"]
-        );
+        //services.AddApplicationInsightsTelemetry(
+        //    options => options.ConnectionString = Configuration["ApplicationInsights:ConnectionString"]
+        //);
 
         services.AddControllers();
 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
-        services.AddRepositories(Configuration);
+        services.AddRepositories();
     }
 
     public void Configure(
@@ -46,8 +46,6 @@ public sealed class Startup
         IDatabaseService databaseService
     )
     {
-        databaseService.Migrate();
-
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();

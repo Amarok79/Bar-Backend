@@ -1,21 +1,17 @@
 ﻿// Copyright (c) 2023, Olaf Kober <olaf.kober@outlook.com>
 
-using System.ComponentModel.DataAnnotations.Schema;
-
-
 namespace Bar.Data;
 
 
 /// <summary>
 ///     Represents a Gin.
 /// </summary>
-[Table("Gins")]
 internal sealed class GinDbo
 {
     /// <summary>
     ///     The unique Id of the Gin.
     /// </summary>
-    public Guid Id { get; set; }
+    public String Id { get; set; } = default!;
 
     /// <summary>
     ///     The name of the Gin, e.g. "The Stin Dry Gin".
@@ -23,19 +19,19 @@ internal sealed class GinDbo
     public String Name { get; set; } = default!;
 
     /// <summary>
-    ///     A longer description of the Gin in Markdown markup language.
-    /// </summary>
-    public String? Description { get; set; }
-
-    /// <summary>
     ///     A teaser of the Gin, e.g. "Styrian Dry Gin".
     /// </summary>
     public String? Teaser { get; set; }
 
     /// <summary>
-    ///     A semi-colon separated list of images of the Gin, e.g. "KRO01046.jpg;KRO00364.jpg".
+    ///     A longer description of the Gin in Markdown markup language.
     /// </summary>
-    public String? Images { get; set; }
+    public String? Description { get; set; }
+
+    /// <summary>
+    ///     A list of images of the Gin, e.g. "KRO01046.jpg, KRO00364.jpg".
+    /// </summary>
+    public IList<String> Images { get; set; } = new List<String>();
 
     /// <summary>
     ///     Indicates whether the Gin is in draft-mode.

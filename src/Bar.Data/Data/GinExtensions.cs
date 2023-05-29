@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2023, Olaf Kober <olaf.kober@outlook.com>
 
 using Bar.Domain;
 
@@ -13,11 +13,11 @@ internal static class GinExtensions
     )
     {
         return new GinDbo {
-            Id = entity.Id,
+            Id = entity.Id.ToString(),
             Name = entity.Name,
             Teaser = entity.Teaser,
             Description = entity.Description,
-            Images = String.Join(';', entity.Images.Select(x => x.FileName)),
+            Images = entity.Images.Select(x => x.FileName).ToList(),
             IsDraft = entity.IsDraft,
         };
     }
@@ -26,7 +26,7 @@ internal static class GinExtensions
         this GinDbo dbo
     )
     {
-        return new Gin(dbo.Id, dbo.Name) {
+        return new Gin(new Guid(dbo.Id), dbo.Name) {
             Teaser = dbo.Teaser ?? String.Empty,
             Description = dbo.Description ?? String.Empty,
             Images = mapImages(),
@@ -36,9 +36,7 @@ internal static class GinExtensions
 
         IReadOnlyList<Image> mapImages()
         {
-            return dbo.Images == null
-                ? Array.Empty<Image>()
-                : dbo.Images.Split(';', StringSplitOptions.RemoveEmptyEntries).Select(x => new Image(x)).ToList();
+            return dbo.Images.Select(x => new Image(x)).ToList();
         }
     }
 }
