@@ -32,7 +32,7 @@ internal sealed class DbRumRepository : IRumRepository
     {
         var filter = includeDrafts
             ? Builders<RumDbo>.Filter.Empty
-            : Builders<RumDbo>.Filter.Eq("IsDraft", false);
+            : Builders<RumDbo>.Filter.Eq(x => x.IsDraft, false);
 
         var rums = await _GetCollection().Find(filter).ToListAsync();
 
@@ -43,7 +43,7 @@ internal sealed class DbRumRepository : IRumRepository
         Guid id
     )
     {
-        var filter = Builders<RumDbo>.Filter.Eq("_id", id.ToString());
+        var filter = Builders<RumDbo>.Filter.Eq(x => x.Id, id.ToString());
 
         var dbo = await _GetCollection().Find(filter).FirstOrDefaultAsync();
 
@@ -54,18 +54,18 @@ internal sealed class DbRumRepository : IRumRepository
         Guid id
     )
     {
-        var filter = Builders<RumDbo>.Filter.Eq("_id", id.ToString());
+        var filter = Builders<RumDbo>.Filter.Eq(x => x.Id, id.ToString());
 
-        var dto = await _GetCollection().FindOneAndDeleteAsync(filter);
+        var result = await _GetCollection().DeleteOneAsync(filter);
 
-        return dto != null;
+        return result.DeletedCount > 0;
     }
 
     public async Task<Boolean> AddOrUpdateAsync(
         Rum item
     )
     {
-        var filter = Builders<RumDbo>.Filter.Eq("_id", item.Id.ToString());
+        var filter = Builders<RumDbo>.Filter.Eq(x => x.Id, item.Id.ToString());
 
         var result = await _GetCollection()
             .ReplaceOneAsync(filter, item.ToDbo(),

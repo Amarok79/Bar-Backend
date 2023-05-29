@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2022, Olaf Kober <olaf.kober@outlook.com>
+﻿// Copyright (c) 2023, Olaf Kober <olaf.kober@outlook.com>
 
 using MongoDB.Driver;
 
@@ -6,7 +6,7 @@ using MongoDB.Driver;
 namespace Bar.Data;
 
 
-public interface IDatabaseService
+internal interface IDatabaseService
 {
     IMongoClient GetClient();
 }

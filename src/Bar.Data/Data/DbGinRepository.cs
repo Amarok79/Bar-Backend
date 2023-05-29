@@ -32,7 +32,7 @@ internal sealed class DbGinRepository : IGinRepository
     {
         var filter = includeDrafts
             ? Builders<GinDbo>.Filter.Empty
-            : Builders<GinDbo>.Filter.Eq("IsDraft", false);
+            : Builders<GinDbo>.Filter.Eq(x => x.IsDraft, false);
 
         var gins = await _GetCollection().Find(filter).ToListAsync();
 
@@ -43,7 +43,7 @@ internal sealed class DbGinRepository : IGinRepository
         Guid id
     )
     {
-        var filter = Builders<GinDbo>.Filter.Eq("_id", id.ToString());
+        var filter = Builders<GinDbo>.Filter.Eq(x => x.Id, id.ToString());
 
         var dbo = await _GetCollection().Find(filter).FirstOrDefaultAsync();
 
@@ -54,18 +54,18 @@ internal sealed class DbGinRepository : IGinRepository
         Guid id
     )
     {
-        var filter = Builders<GinDbo>.Filter.Eq("_id", id.ToString());
+        var filter = Builders<GinDbo>.Filter.Eq(x => x.Id, id.ToString());
 
-        var dto = await _GetCollection().FindOneAndDeleteAsync(filter);
+        var result = await _GetCollection().DeleteOneAsync(filter);
 
-        return dto != null;
+        return result.DeletedCount > 0;
     }
 
     public async Task<Boolean> AddOrUpdateAsync(
         Gin item
     )
     {
-        var filter = Builders<GinDbo>.Filter.Eq("_id", item.Id.ToString());
+        var filter = Builders<GinDbo>.Filter.Eq(x => x.Id, item.Id.ToString());
 
         var result = await _GetCollection()
             .ReplaceOneAsync(filter, item.ToDbo(),
