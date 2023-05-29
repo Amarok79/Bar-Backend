@@ -42,8 +42,7 @@ public sealed class Startup
 
     public void Configure(
         IApplicationBuilder app,
-        IWebHostEnvironment env,
-        IDatabaseService databaseService
+        IWebHostEnvironment env
     )
     {
         if (env.IsDevelopment())
