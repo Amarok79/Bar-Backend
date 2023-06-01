@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.6"></a>
+## [1.11.6](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.6) (2023-6-1)
+
+### Other
+
+* Bump EphemeralMongo6.runtime.linux-x64 from 1.0.0 to 1.1.0 (#10) ([26849e9](https://www.github.com/Amarok79/Bar-Backend/commit/26849e9b4e3dd2e59b95edaba2cd1a1411fbb7ea))
+* Bump NUnit3TestAdapter from 4.4.2 to 4.5.0 (#11) ([adbcd2c](https://www.github.com/Amarok79/Bar-Backend/commit/adbcd2c15898caa4295b72f1b3753a2a368f5ff8))
+
 <a name="1.11.5"></a>
 ## [1.11.5](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.5) (2023-6-1)
 
