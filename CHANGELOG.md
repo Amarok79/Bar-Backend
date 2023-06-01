@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.5"></a>
+## [1.11.5](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.5) (2023-6-1)
+
+### Other
+
+* Bump EphemeralMongo6.runtime.osx-x64 from 1.0.0 to 1.1.0 (#9) ([4dcc463](https://www.github.com/Amarok79/Bar-Backend/commit/4dcc463d4e3f35c6f598b8792e65ea93aaec57c5))
+
 <a name="1.11.4"></a>
 ## [1.11.4](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.4) (2023-5-29)
 
