@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.8"></a>
+## [1.11.8](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.8) (2023-6-7)
+
+### Other
+
+* Bump Microsoft.NET.Test.Sdk from 17.6.0 to 17.6.2 (#13) ([3ba82fd](https://www.github.com/Amarok79/Bar-Backend/commit/3ba82fde530d494b1ad2f833f5604f604252f67e))
+
 <a name="1.11.7"></a>
 ## [1.11.7](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.7) (2023-6-1)
 
