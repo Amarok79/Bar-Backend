@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.10"></a>
+## [1.11.10](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.10) (2023-6-8)
+
+### Other
+
+* Bump docker/login-action from 2.1.0 to 2.2.0 (#14) ([f963eaf](https://www.github.com/Amarok79/Bar-Backend/commit/f963eafdfbbb4511e2e7dea90952563d593d5d18))
+
 <a name="1.11.9"></a>
 ## [1.11.9](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.9) (2023-6-7)
 
