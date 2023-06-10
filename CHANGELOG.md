@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.11"></a>
+## [1.11.11](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.11) (2023-6-10)
+
+### Other
+
+* Bump NFluent from 3.0.0.351 to 3.0.1.352 (#15) ([69fdc18](https://www.github.com/Amarok79/Bar-Backend/commit/69fdc189332fd95a9607dfb2d7d32e874731e36d))
+
 <a name="1.11.10"></a>
 ## [1.11.10](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.10) (2023-6-8)
 
