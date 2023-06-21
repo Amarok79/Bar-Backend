@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.12"></a>
+## [1.11.12](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.12) (2023-6-21)
+
+### Other
+
+* Bump Microsoft.AspNetCore.TestHost from 7.0.5 to 7.0.7 (#16) ([ea02bff](https://www.github.com/Amarok79/Bar-Backend/commit/ea02bffa7e475f13a8089c51e3fdff7fd75c5e03))
+
 <a name="1.11.11"></a>
 ## [1.11.11](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.11) (2023-6-10)
 
