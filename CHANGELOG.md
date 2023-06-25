@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.13"></a>
+## [1.11.13](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.13) (2023-6-25)
+
+### Other
+
+* Bump Microsoft.AspNetCore.TestHost from 7.0.7 to 7.0.8 (#18) ([f0046ca](https://www.github.com/Amarok79/Bar-Backend/commit/f0046cad329ca3d1134723ab3a4ed69620475661))
+* Bump MongoDB.Driver from 2.19.2 to 2.20.0 (#17) ([eeddda4](https://www.github.com/Amarok79/Bar-Backend/commit/eeddda4b8722bb3940ea855c4d860b957f61b188))
+* Bump NCrunch.Framework from 4.7.0.4 to 4.17.0.5 (#19) ([d79abb0](https://www.github.com/Amarok79/Bar-Backend/commit/d79abb05e4b9398be7f94ecbeff1c977688d9a6c))
+
 <a name="1.11.12"></a>
 ## [1.11.12](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.12) (2023-6-21)
 
