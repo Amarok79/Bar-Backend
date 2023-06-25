@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.15"></a>
+## [1.11.15](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.15) (2023-6-25)
+
 <a name="1.11.14"></a>
 ## [1.11.14](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.14) (2023-6-25)
 
