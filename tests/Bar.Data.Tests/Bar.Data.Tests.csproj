@@ -10,7 +10,7 @@
                           Condition="$([MSBuild]::IsOSPlatform('Linux'))"/>
         <PackageReference Include="EphemeralMongo6.runtime.osx-x64" Version="1.1.0"
                           Condition="$([MSBuild]::IsOSPlatform('OSX'))"/>
-        <PackageReference Include="EphemeralMongo6.runtime.win-x64" Version="1.1.0"
+        <PackageReference Include="EphemeralMongo6.runtime.win-x64" Version="1.1.2"
                           Condition="$([MSBuild]::IsOSPlatform('Windows'))"/>
     </ItemGroup>
 
