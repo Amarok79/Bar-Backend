@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.20"></a>
+## [1.11.20](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.20) (2023-7-25)
+
+### Other
+
+* Update packages ([3648474](https://www.github.com/Amarok79/Bar-Backend/commit/36484740c026a40f282e482d262306aa2fa2978a))
+
 <a name="1.11.19"></a>
 ## [1.11.19](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.19) (2023-7-25)
 
