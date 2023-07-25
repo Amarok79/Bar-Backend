@@ -92,7 +92,7 @@ jobs:
           tags: amarok79/bar-backend:latest
 
       - name: SSH Remote Commands
-        uses: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.PVS_HOST }}
           username: ${{ secrets.PVS_SSH_USER }}
