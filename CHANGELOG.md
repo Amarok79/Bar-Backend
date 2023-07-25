@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.17"></a>
+## [1.11.17](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.17) (2023-7-25)
+
+### Other
+
+* Bump appleboy/ssh-action from 0.1.10 to 1.0.0 (#26) ([a3a7005](https://www.github.com/Amarok79/Bar-Backend/commit/a3a700564bf6932c20017b27be20b15a033fd082))
+
 <a name="1.11.16"></a>
 ## [1.11.16](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.16) (2023-6-29)
 
