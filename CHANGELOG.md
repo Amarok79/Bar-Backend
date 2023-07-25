@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.18"></a>
+## [1.11.18](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.18) (2023-7-25)
+
+### Other
+
+* Merge pull request #21 ([d9aed39](https://www.github.com/Amarok79/Bar-Backend/commit/d9aed399cf5f2294827ea70e1322f2ded239502f))
+* Merge pull request #22 ([5ab9a4c](https://www.github.com/Amarok79/Bar-Backend/commit/5ab9a4c6a153fa3ea2478d012e0cd474f4485c47))
+
 <a name="1.11.17"></a>
 ## [1.11.17](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.17) (2023-7-25)
 
