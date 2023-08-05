@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+<a name="1.11.22"></a>
+## [1.11.22](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.22) (2023-8-5)
+
+### Other
+
+* Add Git ignore for Rider ([94808cb](https://www.github.com/Amarok79/Bar-Backend/commit/94808cb4c4ef2b77515205384fb3c21093fea3fd))
+* Add REST test files ([fc579cb](https://www.github.com/Amarok79/Bar-Backend/commit/fc579cb3655b01b688a266b5068c92695d55a7e0))
+* Refresh editor config ([474b5b7](https://www.github.com/Amarok79/Bar-Backend/commit/474b5b7525260ac402b3a19a908416cd1dbdd98e))
+
 <a name="1.11.21"></a>
 ## [1.11.21](https://www.github.com/Amarok79/Bar-Backend/releases/tag/v1.11.21) (2023-7-25)
 
