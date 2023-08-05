@@ -1,0 +1,14 @@
+﻿### Version
+GET {{host}}/api/version
+
+### Gins
+GET {{host}}/api/gins
+
+### Gin
+GET {{host}}/api/gins/564c487f-0dc0-4b8f-9a86-a1f6cdb02447
+
+### Rums
+GET {{host}}/api/rums
+
+### Rum
+GET {{host}}/api/rums/df0759d5-80d5-4581-a67a-24e191343321

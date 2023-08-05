@@ -15,4 +15,16 @@
         <ProjectReference Include="..\Bar.Domain\Bar.Domain.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include=".Testing\backend.rest" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include=".Testing\http-client.env.json">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
